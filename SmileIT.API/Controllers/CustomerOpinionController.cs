@@ -34,7 +34,7 @@ namespace SmileIT.API.Controllers
             return _service.Get();
         }
 
-        [HttpGet]
+        [HttpGet("{id}")]
         public L.CustomerOpinion Get(int id)
         {
             return _service.Get(id);
@@ -48,7 +48,7 @@ namespace SmileIT.API.Controllers
             return _service.Insert(new L.CustomerOpinion(entityInfo.SmileyId, entityInfo.Commentary, entityInfo.Created_at));
         }
 
-        [HttpPut]
+        [HttpPut("{Id}")]
         //[AcceptVerbs("PUT")]
         //[Route("UpdateUser/{id}")]
         public L.CustomerOpinion UpdateCustomerOpinion(int id, CustomerOpinionInfo entityInfo)
@@ -56,7 +56,7 @@ namespace SmileIT.API.Controllers
             return _service.Update(id, new L.CustomerOpinion(entityInfo.SmileyId, entityInfo.Commentary, entityInfo.Created_at));
         }
 
-        [HttpDelete]
+        [HttpDelete("{Id}")]
         //[AcceptVerbs("DELETE")]
         //[Route("DeleteUser/{id}")]
         public void Delete(int id)

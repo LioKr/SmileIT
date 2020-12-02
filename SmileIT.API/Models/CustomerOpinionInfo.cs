@@ -10,7 +10,7 @@ namespace SmileIT.API.Models
     {
         [Required]
         [MaxLength(1)]
-        public int Vote { get; set; }
+        public int SmileyId { get; set; }
         public string Commentary { get; set; }
         [Required]
         [MaxLength(50)]

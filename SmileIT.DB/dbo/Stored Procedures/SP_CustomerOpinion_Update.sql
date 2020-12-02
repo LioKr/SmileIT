@@ -10,8 +10,8 @@ BEGIN TRANSACTION
 		UPDATE CustomersOpinions 
 		SET 
 		CustomerComment = @pCustomerComment,
-		FK_Smiley = @pFK_Smiley
-		--FK_User = @pFK_User     no need at the moment
+		FK_Smiley = @pFK_Smiley,
+		FK_User = @pFK_User     --no need at the moment
 
 		WHERE id_CustomerOpinion = @pId
 	END

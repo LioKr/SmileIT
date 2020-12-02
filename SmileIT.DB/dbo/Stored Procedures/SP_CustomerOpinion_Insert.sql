@@ -7,6 +7,7 @@ AS
 BEGIN
 	BEGIN TRANSACTION 
 		Insert into CustomersOpinions (CustomerReviewDateTime,FK_Smiley,CustomerComment,FK_User)
+		OUTPUT Inserted.id_CustomerOpinion
 		VALUES (@pCreated_at,@idSmiley,@Comment,2);
 	COMMIT
 END

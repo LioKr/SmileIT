@@ -44,12 +44,14 @@ namespace DAL.Services
         public CustomerOpinion Insert(CustomerOpinion entity)
         {
             Command command = new Command("SP_CustomerOpinion_Insert", true);
-            //command.AddParameter("id", entity.Id);
             command.AddParameter("idSmiley", entity.SmileyId);
             command.AddParameter("Comment", entity.Commentary);
             command.AddParameter("pCreated_at", entity.Created_at);
             command.AddParameter("userId", 2);
             _dbConnection.ExecuteNonQuery(command);
+      
+            //entity.Id = (int)_dbConnection.ExecuteScalar<CustomerOpinion>(command); // returns exception : System.NullReferenceException: 'Object reference not set to an instance of an object.'
+
             return entity;
         }
 
@@ -59,7 +61,7 @@ namespace DAL.Services
             command.AddParameter("pCustomerComment", entity.Commentary);
             command.AddParameter("pId", IdCustomerOp);
             command.AddParameter("pFK_Smiley", entity.SmileyId);
-            //command.AddParameter("pFK_User", 2);
+            command.AddParameter("pFK_User", 2);
 
             if (_dbConnection.ExecuteNonQuery(command) > 0)
             {

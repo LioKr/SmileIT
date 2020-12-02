@@ -16,7 +16,7 @@ namespace DAL.Mappers
                 Email = dR["Email"].ToString(),
                 Username = dR["Username"].ToString(),
                 Password = "******", //Attention, mot de passe encrypté, pas possible de le récupérer
-                Role = dR["Role"].ToString()
+                Role = (int)dR["Role"]
             };
         }
 

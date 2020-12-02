@@ -11,13 +11,13 @@ namespace SmileIT.API.Models
         public string Email { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
-        public string Role { get; set; }
+        public int Role { get; set; }
 
         public User()
         {
 
         }
-        public User(string email, string username, string password, string role)
+        public User(string email, string username, string password, int role)
         {
             Email = email;
             Username = username;
@@ -25,7 +25,7 @@ namespace SmileIT.API.Models
             Role = role;
         }
 
-        internal User(int id, string email,string username, string password, string role)
+        internal User(int id, string email,string username, string password, int role)
             :this(email,username,password,role)
         {
             Id = id;

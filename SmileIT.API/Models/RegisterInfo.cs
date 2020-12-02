@@ -20,7 +20,6 @@ namespace SmileIT.API.Models
         [DataType(DataType.Password)]
         public string Password { get; set; }
         [Required]
-        [MaxLength(50)]
-        public string Role { get; set; }
+        public int Role { get; set; }
     }
 }

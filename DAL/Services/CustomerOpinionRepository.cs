@@ -11,7 +11,7 @@ namespace DAL.Services
 {
     public class CustomerOpinionRepository:IRepository<CustomerOpinion, int>
     {
-        private const string ConnectionString = @"Data Source=DESKTOP-12FD2HA\SQLEXPRESS;Initial Catalog=DB_TerryPratchett;Integrated Security=True";
+        private const string ConnectionString = @"Data Source=desktop-12fd2ha\sqlexpress;Initial Catalog=SmileIT.DB;Integrated Security=True"; //lk connection string
         private Connection _dbConnection;
 
         public CustomerOpinionRepository()

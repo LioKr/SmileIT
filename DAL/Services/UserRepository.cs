@@ -11,7 +11,7 @@ namespace DAL.Services
 {
     public class UserRepository : IRepository<User, int>
     {
-        private const string ConnectionString = @"Data Source=DESKTOP-12FD2HA\SQLEXPRESS;Initial Catalog=DB_TerryPratchett;Integrated Security=True";
+        private const string ConnectionString = @"Data Source=desktop-12fd2ha\sqlexpress;Initial Catalog=SmileIT.DB;Integrated Security=True"; //lk connection string
         private Connection _dbConnection;
 
         public UserRepository()
@@ -22,32 +22,31 @@ namespace DAL.Services
         public void Delete(int id)
         {
             Command command = new Command("SP_User_Delete", true);
-            command.AddParameter("Id", id);
+            command.AddParameter("pUserId", id);
 
             _dbConnection.ExecuteNonQuery(command);
         }
 
         public IEnumerable<User> Get()
         {
-            Command command = new Command("SELECT * FROM User_ReadAll");
+            Command command = new Command("SP_User_ReadAll");
             return _dbConnection.ExecuteReader(command, (dr) => dr.ToUser());
         }
 
         public User Get(int id)
         {
             Command command = new Command("SP_User_ReadOne", true);
-            command.AddParameter("Id", id);
+            command.AddParameter("pUserId", id);
             return _dbConnection.ExecuteReader(command, (dr) => dr.ToUser()).SingleOrDefault();
         }
 
         public User Insert(User entity)
         {
-            Command command = new Command("SP_User_Add", true);
-            command.AddParameter("Id", entity.Id);
-            command.AddParameter("Email", entity.Email);
-            command.AddParameter("Username", entity.Username);
-            command.AddParameter("Password", entity.Password);
-            command.AddParameter("Role", entity.Role);
+            Command command = new Command("SP_User_Insert", true);
+            command.AddParameter("pEmail", entity.Email);
+            command.AddParameter("pUsername", entity.Username);
+            command.AddParameter("pPassword", entity.Password);
+            command.AddParameter("pFK_Role", entity.Role);
             _dbConnection.ExecuteNonQuery(command);
             return entity;
         }
@@ -55,11 +54,11 @@ namespace DAL.Services
         public User Update(int Id, User entity)
         {
             Command command = new Command("SP_User_Update", true);
-            command.AddParameter("Id", Id);
-            command.AddParameter("Email", entity.Email);
-            command.AddParameter("Username", entity.Username);
-            command.AddParameter("Password", entity.Password);
-            command.AddParameter("Role", entity.Role);
+            command.AddParameter("pUserId", Id);
+            command.AddParameter("pEmail", entity.Email);
+            command.AddParameter("pUsername", entity.Username);
+            command.AddParameter("pPassword", entity.Password);
+            command.AddParameter("pFK_Role", entity.Role);
 
             if (_dbConnection.ExecuteNonQuery(command) > 0)
             {

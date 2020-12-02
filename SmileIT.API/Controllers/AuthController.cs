@@ -21,7 +21,7 @@ namespace SmileIT.API.Controllers
     [ApiController]
     public class AuthController : ControllerBase
     {
-        private const string ConnectionString = @"Data Source=DESKTOP-12FD2HA\SQLEXPRESS;Initial Catalog=DB_TerryPratchett;Integrated Security=True";
+       private const string ConnectionString = @"Data Source=desktop-12fd2ha\sqlexpress;Initial Catalog=SmileIT.DB;Integrated Security=True"; //lk connection string
         private Connection _connection;
 
         private IRepository<L.User, int> _service;
@@ -29,7 +29,7 @@ namespace SmileIT.API.Controllers
         public AuthController()
         {
             _service = new UserRepositoryAPI();
-            _connection = new Connection(ConnectionString);
+           _connection = new Connection(ConnectionString);
         }
 
         [HttpPost]
@@ -63,15 +63,15 @@ namespace SmileIT.API.Controllers
                 if (!(entity is null) && ModelState.IsValid)
                 {
                     Command command = new Command("SP_User_Login", true);
-                    command.AddParameter("Username", entity.Username);
-                    command.AddParameter("Password", entity.Password);
+                    command.AddParameter("pUsername", entity.Username);
+                    command.AddParameter("pPassword", entity.Password);
 
                     DAL.Data.User user = _connection.ExecuteReader(command, (dr) => new DAL.Data.User()
                     {
                         Id = (int)dr["Id"],
                         Username = dr[nameof(user.Username)].ToString(),
-                        Email = dr["Email"].ToString(),
-                        Role = dr["Role"].ToString()
+                        Email = dr["pEmail"].ToString(),
+                        Role = (int)dr["pFK_Role"]
                     }).SingleOrDefault();
 
                     if (user is null)

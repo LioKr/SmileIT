@@ -1,13 +1,13 @@
 ﻿CREATE PROCEDURE [dbo].[SP_CustomerOpinion_Insert] 
 	@idSmiley INT, 
 	@Comment Varchar(500), 
-	@pCreated_at DATETIME2,
-	@userId INT
+	@pCreated_at DATETIME2
+	--2 is UserID of public, can add a parameter if users want to make CustomersOpinions
 AS 
 BEGIN
 	BEGIN TRANSACTION 
 		Insert into CustomersOpinions (CustomerReviewDateTime,FK_Smiley,CustomerComment,FK_User)
-		VALUES (@pCreated_at,@idSmiley,@Comment,@userId);
+		VALUES (@pCreated_at,@idSmiley,@Comment,2);
 	COMMIT
 END
 

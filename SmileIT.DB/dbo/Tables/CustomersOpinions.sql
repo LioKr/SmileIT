@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [dbo].[CustomersOpinions](
 	[id_CustomerOpinion] [int] IDENTITY(1,1) NOT NULL,
-	[CustomerReviewDateTime] [datetime2] NOT NULL,
+	[CustomerReviewDateTime] DATETIME2 NOT NULL,
 	[CustomerComment] [varchar](500) NULL,
 	[FK_Smiley] [int] NOT NULL,
 	[FK_User] [int] NOT NULL,

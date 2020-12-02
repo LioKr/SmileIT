@@ -11,7 +11,7 @@ namespace DAL.Services
 {
     public class CustomerOpinionRepository:IRepository<CustomerOpinion, int>
     {
-        private const string ConnectionString = @"Data Source=DELL-M4500\SQLEXPRESS;Initial Catalog=SmileIT.DB;Integrated Security=True";
+        private const string ConnectionString = @"Data Source=DELL-M4500\SQLEXPRESS;Initial Catalog=SmileIT.DB;Integrated Security=True"; // Jean-Yves Connection String
         private Connection _dbConnection;
 
         public CustomerOpinionRepository()
@@ -44,7 +44,7 @@ namespace DAL.Services
         {
             Command command = new Command("SP_CustomerOpinion_Insert", true);
             //command.AddParameter("id", entity.Id);
-            command.AddParameter("idSmiley", entity.Vote);
+            command.AddParameter("idSmiley", entity.SmileyId);
             command.AddParameter("Comment", entity.Commentary);
             command.AddParameter("pCreated_at", entity.Created_at);
             command.AddParameter("userId", 2);
@@ -57,7 +57,7 @@ namespace DAL.Services
             Command command = new Command("SP_CustomerOpinion_Update", true);
             command.AddParameter("pCustomerComment", entity.Commentary);
             command.AddParameter("pId", IdCustomerOp);
-            command.AddParameter("pFK_Smiley", entity.Vote);
+            command.AddParameter("pFK_Smiley", entity.SmileyId);
             //command.AddParameter("pFK_User", 2);
 
             if (_dbConnection.ExecuteNonQuery(command) > 0)

@@ -25,7 +25,7 @@ namespace DAL.Mappers
             return new CustomerOpinion()
             {
                 Id = (int)dR["BookId"],
-                Vote = (int)dR["Vote"],
+                SmileyId = (int)dR["SmileyId"],
                 Commentary = (dR["Commentary"] != DBNull.Value) ? dR["Commentary"].ToString() : null,
                 Created_at = (DateTime)dR["Created_at"]
                 //SagaName = (dR["SagaName"] != DBNull.Value) ? dR["SagaName"].ToString() : null,

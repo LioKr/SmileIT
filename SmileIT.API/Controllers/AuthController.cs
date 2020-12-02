@@ -69,10 +69,10 @@ namespace SmileIT.API.Controllers
 
                     DAL.Data.User user = _connection.ExecuteReader(command, (dr) => new DAL.Data.User()
                     {
-                        Id = (int)dr["Id"],
+                        Id = (int)dr["id_User"],
                         Username = dr[nameof(user.Username)].ToString(),
-                        Email = dr["pEmail"].ToString(),
-                        Role = (int)dr["pFK_Role"]
+                        Email = dr["Email"].ToString(),
+                        Role = (int)dr["FK_Role"]
                     }).SingleOrDefault();
 
                     if (user is null)

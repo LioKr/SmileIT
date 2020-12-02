@@ -59,7 +59,7 @@ namespace DAL.Services
             command.AddParameter("pEmail", entity.Email);
             command.AddParameter("pUsername", entity.Username);
             command.AddParameter("pPassword", entity.Password);
-            command.AddParameter("pFK_Role", entity.Role);
+            command.AddParameter("pRole", entity.Role);
 
             if (_dbConnection.ExecuteNonQuery(command) > 0)
             {

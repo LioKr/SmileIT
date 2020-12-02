@@ -35,7 +35,7 @@ namespace SmileIT.API.Controllers
 
         [HttpPost]
         //[AcceptVerbs("POST")]
-        //[Route("Register")]
+        [Route("Register")]
         public HttpResponseMessage Register(RegisterInfo entity)
         {
             try
@@ -56,7 +56,7 @@ namespace SmileIT.API.Controllers
 
         [HttpPost]
         //[AcceptVerbs("POST")]
-        [Route("api/Login")]
+        [Route("Login")]
         public HttpResponseMessage Login(LoginInfo entity)
         {
             try

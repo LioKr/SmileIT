@@ -8,13 +8,11 @@ namespace SmileIT.API.Models
 {
     public class CustomerOpinionInfo
     {
+
         [Required]
-        [MaxLength(1)]
         public int SmileyId { get; set; }
         public string Commentary { get; set; }
         [Required]
-        [MaxLength(50)]
-        [DataType(DataType.Date)]
         public DateTime Created_at { get; set; }
     }
 }

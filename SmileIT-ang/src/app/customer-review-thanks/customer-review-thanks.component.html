@@ -1,0 +1,38 @@
+<div class="content" role="main">
+
+    <h1>customer-review-thanks works!</h1>
+    <h1>Votre avis a bien été enregistré.</h1>
+    <h3>Nous vous remercions beaucoup d'avoir exprimé votre avis</h3>    
+    <!-- <img src="../../assets/images/smiley-happy.png" class="circle-link" alt="happy smiley" />-->
+
+    <div class="content" *ngIf="isCommentingOver === false">
+        <p> Vous avez voté il y a {{ secondsOfCounter }} secondes.</p>
+        <img  src="../../assets/images/smiley-heart-eyes.png" class="circle-link" alt="lovely smiley" />
+
+        <h4 class="mt-3 mb-1">Souhaitez-vous laisser un commentaire? </h4>
+
+        <div>
+            <button class="btn btn-danger mx-2" (click)="noWantToComment()">Non merci</button>
+            <button class="btn btn-primary mx-2" (click)="yesWantToComment()">Oui, volontiers !</button>
+            <button class="btn btn-warning mx-2" (click)="finishedWithComment()">Commenté et fini...</button>
+        </div>
+
+        <app-customer-review-commentary *ngIf="doesWantComment === true"></app-customer-review-commentary>
+    </div>
+
+    
+    <img *ngIf="isCommentingOver === true" src="../../assets/images/smiley-angel.jpg" class="circle-link" alt="angel smiley" /> 
+ 
+
+
+
+    
+    
+
+    <h2 class="mt-5">Nous espérons vous revoir prochainement</h2>
+    <div>
+        <button class="btn btn-info btn-sm btn-inline mr-5" (click)="goToVoteMenu()">Menu principal</button>
+        <span class="ml-5">Business name</span>
+    </div>
+    
+</div>

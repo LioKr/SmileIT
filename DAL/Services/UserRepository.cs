@@ -11,7 +11,7 @@ namespace DAL.Services
 {
     public class UserRepository : IRepository<User, int>
     {
-        private const string ConnectionString = @"Data Source=desktop-12fd2ha\sqlexpress;Initial Catalog=SmileIT.DB;Integrated Security=True"; //lk connection string
+        private const string ConnectionString = @"Data Source=desktop-12fd2ha\sqlexpress;Initial Catalog=SmileITv2.DB;Integrated Security=True"; //lk connection string
                                                 //@"Data Source=DELL-M4500\SQLEXPRESS;Initial Catalog=SmileIT.DB;Integrated Security=True" // jy Connection string
         private Connection _dbConnection;
 
@@ -48,7 +48,9 @@ namespace DAL.Services
             command.AddParameter("pUsername", entity.Username);
             command.AddParameter("pPassword", entity.Password);
             command.AddParameter("pFK_Role", entity.Role);
-            _dbConnection.ExecuteNonQuery(command);
+            //_dbConnection.ExecuteNonQuery(command);
+
+            entity.Id = (int)_dbConnection.ExecuteScalar<User>(command);
             return entity;
         }
 

@@ -21,7 +21,7 @@ namespace SmileIT.API.Controllers
     [ApiController]
     public class AuthController : ControllerBase
     {
-       private const string ConnectionString = @"Data Source=desktop-12fd2ha\sqlexpress;Initial Catalog=SmileIT.DB;Integrated Security=True"; //lk connection string
+       private const string ConnectionString = @"Data Source=desktop-12fd2ha\sqlexpress;Initial Catalog=SmileITv2.DB;Integrated Security=True"; //lk connection string
                 //@"Data Source=DELL-M4500\SQLEXPRESS;Initial Catalog=SmileIT.DB;Integrated Security=True" // jy Connection string
         private Connection _connection;
 

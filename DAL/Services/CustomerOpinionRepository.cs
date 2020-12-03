@@ -11,8 +11,9 @@ namespace DAL.Services
 {
     public class CustomerOpinionRepository:IRepository<CustomerOpinion, int>
     {
-        private const string ConnectionString = @"Data Source=desktop-12fd2ha\sqlexpress;Initial Catalog=SmileIT.DB;Integrated Security=True"; //lk connection string
-                                               //@"Data Source=DELL-M4500\SQLEXPRESS;Initial Catalog=SmileIT.DB;Integrated Security=True" // jy Connection string
+        private const string ConnectionString = @"Data Source=desktop-12fd2ha\sqlexpress;Initial Catalog=SmileITv2.DB;Integrated Security=True"; //lk connection string
+        
+        //@"Data Source=DELL-M4500\SQLEXPRESS;Initial Catalog=SmileIT.DB;Integrated Security=True" // jy Connection string
         private Connection _dbConnection;
 
         public CustomerOpinionRepository()
@@ -47,10 +48,9 @@ namespace DAL.Services
             command.AddParameter("idSmiley", entity.SmileyId);
             command.AddParameter("Comment", entity.Commentary);
             command.AddParameter("pCreated_at", entity.Created_at);
-            command.AddParameter("userId", 2);
-            _dbConnection.ExecuteNonQuery(command);
+            //command.AddParameter("userId", 2);
       
-            //entity.Id = (int)_dbConnection.ExecuteScalar<CustomerOpinion>(command); // returns exception : System.NullReferenceException: 'Object reference not set to an instance of an object.'
+            entity.Id = (int)_dbConnection.ExecuteScalar<CustomerOpinion>(command);
 
             return entity;
         }
@@ -61,7 +61,8 @@ namespace DAL.Services
             command.AddParameter("pCustomerComment", entity.Commentary);
             command.AddParameter("pId", IdCustomerOp);
             command.AddParameter("pFK_Smiley", entity.SmileyId);
-            command.AddParameter("pFK_User", 2);
+            command.AddParameter("pCreated_at", entity.Created_at);
+            //command.AddParameter("pFK_User", 2);
 
             if (_dbConnection.ExecuteNonQuery(command) > 0)
             {

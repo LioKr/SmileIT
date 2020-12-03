@@ -6,5 +6,6 @@
 AS
 BEGIN TRANSACTION
 	INSERT INTO Users ([Username],Email,[Password],FK_Role) 
+		OUTPUT Inserted.id_User
 	VALUES (@pUsername,@pEmail,dbo.SF_Hash_Password(@pPassword),@pFK_Role)
 COMMIT

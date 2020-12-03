@@ -1,15 +1,15 @@
-import {CustomerOpinionDetail} from '../models/customer-opinion-detail.model'
+import {CustomerOpinion} from '../models/customer-opinion.model';
 import { Injectable } from '@angular/core';
-import {HttpClient } from '@angular/common/http'
+import {HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
-export class CustomerOpinionDetailService {
+export class CustomerOpinionService {
 
-  formData: CustomerOpinionDetail = new CustomerOpinionDetail();
+  formData: CustomerOpinion = new CustomerOpinion();
   readonly rootURL = "https://localhost:44356/api";
-  list: CustomerOpinionDetail[];
+  list: CustomerOpinion[];
 
   constructor(private http: HttpClient) { }
 
@@ -32,7 +32,7 @@ export class CustomerOpinionDetailService {
   refreshList(){
     this.http.get(`${this.rootURL}/CustomerOpinion/`)
     .toPromise()
-    .then(res => this.list = res as CustomerOpinionDetail[]);
+    .then(res => this.list = res as CustomerOpinion[]);
   }
 
 }

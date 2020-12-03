@@ -1,0 +1,36 @@
+<div class="content" role="main">
+
+    <h1>How was your experience ?</h1>
+    <h2>We'd love it if you'd let us know!</h2>
+    <p>Select one of the smiley below:</p>
+  
+    <!-- <form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
+        <input type="hidden" name="Id" [value]="service.formData.Id">
+        <input type="hidden" name="SmileyId" [(ngModel)]="service.formData.SmileyId">
+        <input type="hidden" name="Commentary" [(ngModel)]="service.formData.Commentary">
+        <input type="hidden" name="Created_at" [(ngModel)]="service.formData.Created_at">        
+    </form> -->
+
+    <div class="row">
+      <div id="small-img" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 center">
+        <ul>
+          <li>
+            <a  (click)="onVote()">
+              <img src="../../assets/images/smiley-red.png" class="circle-link" alt="red unhappy smiley" />
+            </a>
+          </li>
+          <li>
+            <a (click)="onVote()">
+              <img src="../../assets/images/smiley-yellow.png" class="circle-link" alt="yellow neutral smiley" />
+            </a>
+          </li>
+          <li>
+            <a (click)="onVote()">
+              <img src="../../assets/images/smiley-green.png" class="circle-link" alt="green happy smiley" />
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    
+</div>

@@ -1,6 +1,6 @@
-export class CustomerOpinionDetail {
+export class CustomerOpinion {
     Id: number;
     SmileyId: number;
-    Comment: string;
+    Commentary: string;
     Created_at: string;
 }

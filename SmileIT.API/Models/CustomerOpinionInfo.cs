@@ -13,6 +13,7 @@ namespace SmileIT.API.Models
         public int SmileyId { get; set; }
         public string Commentary { get; set; }
         [Required]
+        [DataType ("DateTime2")]
         public DateTime Created_at { get; set; }
     }
 }

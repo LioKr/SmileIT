@@ -24,12 +24,13 @@ export class CustomerOpinionDetailFormComponent implements OnInit {
       Id: 0,
       SmileyId: 0,
       Commentary: '',
-      Created_at: ''
+      Created_at: null
       };
     }
   }
 
   onSubmit(form: NgForm) {
+    this.service.formData.SmileyId = +this.service.formData.SmileyId;
     if (this.service.formData.Id === 0)
     {
       this.insertRecord(form);
@@ -53,6 +54,8 @@ export class CustomerOpinionDetailFormComponent implements OnInit {
   }
 
   insertRecord(form: NgForm) {
+    //this.service.formData.Id = null;    
+    //this.service.formData.SmileyId = +this.service.formData.SmileyId;
     this.service.postCustomerOpinion().subscribe(
       res => {
         this.resetForm(form);

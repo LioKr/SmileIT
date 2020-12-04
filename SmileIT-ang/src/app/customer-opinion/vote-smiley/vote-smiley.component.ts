@@ -15,12 +15,31 @@ export class VoteSmileyComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onVote(){
+
+
+  onVote1(form: NgForm){
+    this.service.formData.SmileyId = 1;
+    this.onSubmit(form);
+    this.goToThanks();
+  }
+  onVote3(form: NgForm){
+    this.service.formData.SmileyId = 3;
+    this.onSubmit(form);
+    this.goToThanks();
+  }
+  onVote5(form: NgForm){
+    this.service.formData.SmileyId = 5;
+    this.onSubmit(form);
+    this.goToThanks();
+  }
+
+  goToThanks(){
     this.router.navigate(['thanks']);
   }
 
   onSubmit(form: NgForm) {
-      this.insertRecord(form);
+    this.service.formData.Created_at = new Date();
+    this.insertRecord(form);
   }
 
   insertRecord(form: NgForm) {

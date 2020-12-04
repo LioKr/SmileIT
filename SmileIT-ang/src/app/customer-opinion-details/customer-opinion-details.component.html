@@ -10,7 +10,7 @@
                 <table class="table">
                     <thead class="thead-light">
                         <tr>
-                            <th>CustomerOpinion Id</th>
+                            <th>Id</th>
                             <th>SmileyId</th>
                             <th>Comment</th>
                             <th>Created_at</th>
@@ -21,7 +21,7 @@
                         <td (click)="populateForm(pd)">{{pd.Id}}</td>
                         <td (click)="populateForm(pd)">{{pd.SmileyId}}</td>
                         <td (click)="populateForm(pd)">{{pd.Commentary}}</td>
-                        <td (click)="populateForm(pd)">{{pd.Created_at}}</td>
+                        <td (click)="populateForm(pd)">{{pd.Created_at | date :'mediumDate'}}</td>
                         <td>
                             <i class="far fa-trash-alt fa-lg text-danger" (click)="onDelete(pd.Id)"></i>
                         </td>

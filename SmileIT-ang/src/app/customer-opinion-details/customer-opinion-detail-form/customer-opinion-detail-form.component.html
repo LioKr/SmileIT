@@ -1,4 +1,10 @@
 <form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
+    <!-- <div class="form-group">
+        <label>CustomerOpinion Id</label>
+        <input name="Id" #Id="ngModel" [(ngModel)]="service.formData.Id"
+            class="form-control form-control-lg" placeholder="Id, 0 for new" required
+            [class.invalid]="Id.invalid &#038;&#038; Id.touched">
+    </div> -->
     <input type="hidden" name="Id" [value]="service.formData.Id">
     <div class="form-group">
         <label>SmileyId</label>

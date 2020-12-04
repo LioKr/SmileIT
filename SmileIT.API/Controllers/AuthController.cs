@@ -14,6 +14,10 @@ using SmileIT.API.Models;
 using System.Net;
 using System.Data.SqlClient;
 using Newtonsoft.Json;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 
 namespace SmileIT.API.Controllers
 {
@@ -57,7 +61,7 @@ namespace SmileIT.API.Controllers
         [HttpPost]
         //[AcceptVerbs("POST")]
         [Route("Login")]
-        public HttpResponseMessage Login(LoginInfo entity)
+        public IActionResult Login(LoginInfo entity)
         {
             try
             {
@@ -76,21 +80,62 @@ namespace SmileIT.API.Controllers
                     }).SingleOrDefault();
 
                     if (user is null)
-                        return new HttpResponseMessage(HttpStatusCode.BadRequest);
+                        return Unauthorized();
                     else
-                        return new HttpResponseMessage(HttpStatusCode.OK)
-                        {
-                            Content = new StringContent(JsonConvert.SerializeObject(user))
-                        };
+                    {
+                        var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superSecretKey@345"));
+                        var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
+                        var tokeOptions = new JwtSecurityToken(
+                            issuer: "https://localhost:44356",
+                            audience: "https://localhost:44356",
+                            claims: new List<Claim>(),
+                            expires: DateTime.MaxValue,
+                            signingCredentials: signinCredentials
+                        );
+                        var tokenString = new JwtSecurityTokenHandler().WriteToken(tokeOptions);
+                        return Ok(new { Token = tokenString });
+                    }
+
+
+
+                        //return new HttpResponseMessage(HttpStatusCode.OK)
+                        //{
+                        //    Content = new StringContent(JsonConvert.SerializeObject(user))
+                        //};
+
+                    //Command command = new Command("SP_User_Check", true);
+                    //command.AddParameter("pUsername", entity.Username);
+                    //command.AddParameter("pPassword", entity.Password);
+                    //bool isOK = (bool)_connection.ExecuteScalar<LoginInfo>(command);
+
+                    //if (isOK == true)
+                    //{
+                    //    var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superSecretKey@345"));
+                    //    var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
+                    //    var tokeOptions = new JwtSecurityToken(
+                    //        issuer: "https://localhost:44356",
+                    //        audience: "https://localhost:44356",
+                    //        claims: new List<Claim>(),
+                    //        expires: DateTime.MaxValue,
+                    //        signingCredentials: signinCredentials
+                    //    );
+                    //    var tokenString = new JwtSecurityTokenHandler().WriteToken(tokeOptions);
+                    //    return Ok(new { Token = tokenString });
+                    //}
+                    //else
+                    //{
+                    //    return Unauthorized();
+                    //}
+
                 }
             }
             catch (SqlException exception)
             {
-                return new HttpResponseMessage(HttpStatusCode.BadRequest);
+                return Unauthorized();
 
             }
 
-            return new HttpResponseMessage(HttpStatusCode.BadRequest);
+            return Unauthorized();
 
         }
 

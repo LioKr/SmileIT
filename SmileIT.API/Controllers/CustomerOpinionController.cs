@@ -14,6 +14,7 @@ using SmileIT.API.Models;
 using System.Net;
 using System.Data.SqlClient;
 using Newtonsoft.Json;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SmileIT.API.Controllers
 {
@@ -28,19 +29,19 @@ namespace SmileIT.API.Controllers
             _service = new CustomerOpinionRepositoryAPI();
         }
 
-        [HttpGet]
+        [HttpGet, Authorize]
         public IEnumerable<L.CustomerOpinion> Get()
         {
             return _service.Get();
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id}"), Authorize]
         public L.CustomerOpinion Get(int id)
         {
             return _service.Get(id);
         }
 
-        [HttpPost]
+        [HttpPost, Authorize]
         //[AcceptVerbs("POST")]
         //[Route("AddUser")] 
         public L.CustomerOpinion AddCustomerOpinion(CustomerOpinionInfo entityInfo)
@@ -48,7 +49,7 @@ namespace SmileIT.API.Controllers
             return _service.Insert(new L.CustomerOpinion(entityInfo.SmileyId, entityInfo.Commentary, entityInfo.Created_at));
         }
 
-        [HttpPut("{id}")]
+        [HttpPut("{id}"), Authorize]
         //[AcceptVerbs("PUT")]
         //[Route("UpdateUser/{id}")]
         public L.CustomerOpinion UpdateCustomerOpinion(int id, CustomerOpinionInfo entityInfo)
@@ -56,7 +57,7 @@ namespace SmileIT.API.Controllers
             return _service.Update(id, new L.CustomerOpinion(entityInfo.SmileyId, entityInfo.Commentary, entityInfo.Created_at));
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("{id}"), Authorize]
         //[AcceptVerbs("DELETE")]
         //[Route("DeleteUser/{id}")]
         public void Delete(int id)

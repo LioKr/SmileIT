@@ -8,7 +8,7 @@ namespace SmileIT.API.Models
     public class CustomerOpinion
     {
         public int Id { get; set; }
-        public int Vote { get; set; }
+        public int SmileyId { get; set; }
         public string Commentary { get; set; }
         public DateTime Created_at { get; set; }
 
@@ -17,15 +17,15 @@ namespace SmileIT.API.Models
 
         }
 
-        public CustomerOpinion(int vote, string commentary, DateTime created_at)
+        public CustomerOpinion(int smileyId, string commentary, DateTime created_at)
         {
-            Vote = vote;
+            SmileyId = smileyId;
             Commentary = commentary;
             Created_at = created_at;
         }
 
-        internal CustomerOpinion(int id, int vote, string commentary, DateTime created_at)
-            :this(vote,commentary,created_at)
+        internal CustomerOpinion(int id, int smileyId, string commentary, DateTime created_at)
+            :this(smileyId, commentary,created_at)
         {
             Id = id;
         }

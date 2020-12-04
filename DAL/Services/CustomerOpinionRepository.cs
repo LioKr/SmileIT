@@ -11,7 +11,9 @@ namespace DAL.Services
 {
     public class CustomerOpinionRepository:IRepository<CustomerOpinion, int>
     {
-        private const string ConnectionString = @"Data Source=DESKTOP-12FD2HA\SQLEXPRESS;Initial Catalog=DB_TerryPratchett;Integrated Security=True";
+        private const string ConnectionString = @"Data Source=desktop-12fd2ha\sqlexpress;Initial Catalog=SmileITv2.DB;Integrated Security=True"; //lk connection string
+        
+        //@"Data Source=DELL-M4500\SQLEXPRESS;Initial Catalog=SmileIT.DB;Integrated Security=True" // jy Connection string
         private Connection _dbConnection;
 
         public CustomerOpinionRepository()
@@ -21,7 +23,7 @@ namespace DAL.Services
 
         public void Delete(int id)
         {
-            Command command = new Command("SP_CustomerOpinion_Delete", true);
+            Command command = new Command("SP_CustomerOpinion_DeleteById", true);
             command.AddParameter("Id", id);
 
             _dbConnection.ExecuteNonQuery(command);
@@ -29,39 +31,42 @@ namespace DAL.Services
 
         public IEnumerable<CustomerOpinion> Get()
         {
-            Command command = new Command("SELECT * FROM CustomerOpinion_ReadAll");
+            Command command = new Command("SELECT * FROM CustomersOpinions");
             return _dbConnection.ExecuteReader(command, (dr) => dr.ToCustomerOpinion());
         }
 
         public CustomerOpinion Get(int id)
         {
-            Command command = new Command("SP_CustomerOpinion_ReadOne", true);
+            Command command = new Command("SELECT * FROM CustomersOpinions WHERE id_CustomerOpinion = "+id+";");
             command.AddParameter("CustomerOpinionId", id);
             return _dbConnection.ExecuteReader(command, (dr) => dr.ToCustomerOpinion()).SingleOrDefault();
         }
 
         public CustomerOpinion Insert(CustomerOpinion entity)
         {
-            Command command = new Command("SP_CustomerOpinion_Add", true);
-            command.AddParameter("Id", entity.Id);
-            command.AddParameter("Vote", entity.Vote);
-            command.AddParameter("Commentary", entity.Commentary);
-            command.AddParameter("Created_at", entity.Created_at);
-            _dbConnection.ExecuteNonQuery(command);
+            Command command = new Command("SP_CustomerOpinion_Insert", true);
+            command.AddParameter("idSmiley", entity.SmileyId);
+            command.AddParameter("Comment", entity.Commentary);
+            command.AddParameter("pCreated_at", entity.Created_at);
+            //command.AddParameter("userId", 2);
+      
+            entity.Id = (int)_dbConnection.ExecuteScalar<CustomerOpinion>(command);
+
             return entity;
         }
 
-        public CustomerOpinion Update(int Id, CustomerOpinion entity)
+        public CustomerOpinion Update(int IdCustomerOp, CustomerOpinion entity)
         {
             Command command = new Command("SP_CustomerOpinion_Update", true);
-            command.AddParameter("Id", Id);
-            command.AddParameter("Vote", entity.Vote);
-            command.AddParameter("Commentary", entity.Commentary);
-            command.AddParameter("Created_at", entity.Created_at);
+            command.AddParameter("pCustomerComment", entity.Commentary);
+            command.AddParameter("pId", IdCustomerOp);
+            command.AddParameter("pFK_Smiley", entity.SmileyId);
+            command.AddParameter("pCreated_at", entity.Created_at);
+            //command.AddParameter("pFK_User", 2);
 
             if (_dbConnection.ExecuteNonQuery(command) > 0)
             {
-                return this.Get(Id);
+                return this.Get(IdCustomerOp);
             }
             return entity;
         }

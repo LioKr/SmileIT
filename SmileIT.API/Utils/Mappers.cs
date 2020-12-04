@@ -38,7 +38,7 @@ namespace SmileIT.API.Utils
             return new CustomerOpinion()
             {
                 Id = entity.Id,
-                Vote = entity.Vote,
+                SmileyId = entity.SmileyId,
                 Commentary = entity.Commentary,
                 Created_at = entity.Created_at
             };
@@ -49,7 +49,7 @@ namespace SmileIT.API.Utils
             return new D.CustomerOpinion()
             {
                 Id = entity.Id,
-                Vote = entity.Vote,
+                SmileyId = entity.SmileyId,
                 Commentary = entity.Commentary,
                 Created_at = entity.Created_at
             };

@@ -12,11 +12,11 @@ namespace DAL.Mappers
         {
             return new User()
             {
-                Id = (int)dR["Id"],
+                Id = (int)dR["id_User"],
                 Email = dR["Email"].ToString(),
                 Username = dR["Username"].ToString(),
                 Password = "******", //Attention, mot de passe encrypté, pas possible de le récupérer
-                Role = dR["Role"].ToString()
+                Role = (int)dR["FK_Role"]
             };
         }
 
@@ -24,10 +24,10 @@ namespace DAL.Mappers
         {
             return new CustomerOpinion()
             {
-                Id = (int)dR["BookId"],
-                Vote = (int)dR["Vote"],
-                Commentary = (dR["Commentary"] != DBNull.Value) ? dR["Commentary"].ToString() : null,
-                Created_at = (DateTime)dR["Created_at"]
+                Id = (int)dR["id_CustomerOpinion"],
+                SmileyId = (int)dR["FK_Smiley"],
+                Commentary = (dR["CustomerComment"] != DBNull.Value) ? dR["CustomerComment"].ToString() : null,
+                Created_at = (DateTime)dR["CustomerReviewDateTime"]
                 //SagaName = (dR["SagaName"] != DBNull.Value) ? dR["SagaName"].ToString() : null,
                 //LastEdit = (dR["LastEdit"] != DBNull.Value) ? (DateTime?)dR["LastEdit"] : null
             };

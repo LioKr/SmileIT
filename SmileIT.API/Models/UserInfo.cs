@@ -9,7 +9,7 @@ namespace SmileIT.API.Models
     public class UserInfo
     {
         [Required]
-        [MaxLength(50)]
+        [MaxLength(150)]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
         [Required]
@@ -20,7 +20,6 @@ namespace SmileIT.API.Models
         [DataType(DataType.Password)]
         public string Password { get; set; }
         [Required]
-        [MaxLength(2)]
-        public string Role { get; set; }
+        public int Role { get; set; }
     }
 }

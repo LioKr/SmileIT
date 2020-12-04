@@ -22,6 +22,7 @@ import { CustomerOpinionDetailsComponent } from './customer-opinion-details/cust
 import { CustomerOpinionDetailFormComponent } from './customer-opinion-details/customer-opinion-detail-form/customer-opinion-detail-form.component';
 import { VoteSmileyComponent } from './customer-opinion/vote-smiley/vote-smiley.component';
 import { VoteThanksComponent } from './customer-opinion/vote-thanks/vote-thanks.component';
+import { LoginComponent } from './login/login.component';
 
 
 
@@ -36,7 +37,8 @@ import { VoteThanksComponent } from './customer-opinion/vote-thanks/vote-thanks.
     CustomerOpinionDetailsComponent,
     CustomerOpinionDetailFormComponent,
     VoteSmileyComponent,
-    VoteThanksComponent
+    VoteThanksComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

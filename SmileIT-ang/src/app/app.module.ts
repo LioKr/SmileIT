@@ -7,11 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
-import { CustomerReviewSmileyComponent } from './customer-review-smiley/customer-review-smiley.component';
-import { CustomerReviewCommentaryComponent } from './customer-review-commentary/customer-review-commentary.component';
-import { CustomerReviewThanksComponent } from './customer-review-thanks/customer-review-thanks.component';
 // import { MatToolbarModule, MatIconModule, MatSidenavModule, MatListModule, MatButtonModule } from  '@angular/material';
-
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -30,9 +26,6 @@ import { LoginComponent } from './login/login.component';
 @NgModule({
   declarations: [
     AppComponent,
-    CustomerReviewSmileyComponent,
-    CustomerReviewCommentaryComponent,
-    CustomerReviewThanksComponent,
     FourOhFourComponent,
     CustomerOpinionDetailsComponent,
     CustomerOpinionDetailFormComponent,

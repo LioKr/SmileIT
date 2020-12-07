@@ -13,9 +13,23 @@ export class VoteSmileyComponent implements OnInit {
   constructor(public service: CustomerOpinionService, private router: Router) { }
 
   ngOnInit(): void {
+    this.resetForm();
   }
 
-
+  
+  resetForm (form?: NgForm) {
+    if (form != null){
+      form.form.reset();
+    }
+    else {
+    this.service.formData = {
+      Id: 0,
+      SmileyId: 0,
+      Commentary: '',
+      Created_at: null
+      };
+    }
+  }
 
   onVote1(form: NgForm){
     this.service.formData.SmileyId = 1;

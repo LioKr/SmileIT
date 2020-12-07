@@ -1,13 +1,18 @@
-<div class="content" role="main">
+<div class="content mt-0" role="main">
 
     <h1>How was your experience ?</h1>
     <h2>We'd love it if you'd let us know!</h2>
-    <p>Select one of the smiley below:</p>
   
     <form #form="ngForm" autocomplete="off" (ngSubmit)="onSubmit(form)">
         <input type="hidden" name="Id" [value]="service.formData.Id">
         <input type="hidden" name="SmileyId" [ngModel]="service.formData.SmileyId">
         <input type="hidden" name="Commentary" [ngModel]="service.formData.Commentary">
+        <div class="form-group ">
+          <label for="comment">
+            Pourriez-vous nous indiquez ce qui pourrait être à améliorer? (facultatif)
+          </label>    
+          <textarea name="comment" #comment="ngModel" [(ngModel)]="service.formData.Commentary" class="form-control form-control-lg "  placeholder="Votre opinion"></textarea>
+        </div>
         <input type="hidden" name="Created_at" [ngModel]="service.formData.Created_at">        
     </form> 
 

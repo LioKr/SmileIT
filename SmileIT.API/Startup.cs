@@ -14,6 +14,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using SmileIT.API.Utils;
 
 namespace SmileIT.API
 {
@@ -31,24 +32,30 @@ namespace SmileIT.API
         {
 
             //JWT - Don't update Nugget the latest version is not compatible
-            // For the sake of simplicity, we are going to add all the code inside the ConfigureServices method. But the better practice is to use Extension methods so we could free our ConfigureServices method from extra code lines. 
-            // tutorial: https://code-maze.com/authentication-aspnetcore-jwt-1/
-            services.AddAuthentication(opt =>
+            // JWT configurations
+            // configure strongly typed settings objects
+            //https://medium.com/net-core-api-jwt-authentication/net-core-api-jwt-authentication-380adcbee705
+            var appSettingsSection = Configuration.GetSection("AppSettings");
+            services.Configure<AppSettings>(appSettingsSection);
+
+            //configure jwt authentication
+            var appSettings = appSettingsSection.Get<AppSettings>();
+            var key = Encoding.ASCII.GetBytes(appSettings.SecretJWT);
+            services.AddAuthentication(x =>
+           {
+               x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+               x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+           })
+            .AddJwtBearer(x =>
             {
-                opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            })
-            .AddJwtBearer(options =>
-            {
-                options.TokenValidationParameters = new TokenValidationParameters
+                x.RequireHttpsMetadata = false;
+                x.SaveToken = true;
+                x.TokenValidationParameters = new TokenValidationParameters
                 {
-                    ValidateIssuer = true,
-                    ValidateAudience = true,
-                    ValidateLifetime = true,
                     ValidateIssuerSigningKey = true,
-                    ValidIssuer = "https://localhost:44356",
-                    ValidAudience = "https://localhost:44356",
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superSecretKey@345"))
+                    IssuerSigningKey = new SymmetricSecurityKey(key),
+                    ValidateIssuer = false,
+                    ValidateAudience = false
                 };
             });
 
@@ -60,12 +67,7 @@ namespace SmileIT.API
             });
 
 
-            //remove default json selialize
-            services.AddControllers().AddJsonOptions(options =>
-            {
-                options.JsonSerializerOptions.PropertyNamingPolicy = null;
-                options.JsonSerializerOptions.DictionaryKeyPolicy = null;
-            });
+           
 
             //Connection String
             //Refer appsetting.json

@@ -18,6 +18,8 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using SmileIT.API.Utils;
+using Microsoft.Extensions.Options;
 
 namespace SmileIT.API.Controllers
 {
@@ -28,17 +30,17 @@ namespace SmileIT.API.Controllers
        private const string ConnectionString = @"Data Source=desktop-12fd2ha\sqlexpress;Initial Catalog=SmileITv2.DB;Integrated Security=True"; //lk connection string
                 //@"Data Source=DELL-M4500\SQLEXPRESS;Initial Catalog=SmileIT.DB;Integrated Security=True" // jy Connection string
         private Connection _connection;
-
+        private AppSettings _appSettings;
         private IRepository<L.User, int> _service;
 
-        public AuthController()
+        public AuthController(IOptions<AppSettings> appSettings)
         {
             _service = new UserRepositoryAPI();
            _connection = new Connection(ConnectionString);
+            _appSettings = appSettings.Value;
         }
 
         [HttpPost]
-        //[AcceptVerbs("POST")]
         [Route("Register")]
         public HttpResponseMessage Register(RegisterInfo entity)
         {
@@ -59,7 +61,6 @@ namespace SmileIT.API.Controllers
         }
 
         [HttpPost]
-        //[AcceptVerbs("POST")]
         [Route("Login")]
         public IActionResult Login(LoginInfo entity)
         {
@@ -83,17 +84,22 @@ namespace SmileIT.API.Controllers
                         return Unauthorized();
                     else
                     {
-                        var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superSecretKey@345"));
-                        var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
-                        var tokeOptions = new JwtSecurityToken(
-                            issuer: "https://localhost:44356",
-                            audience: "https://localhost:44356",
-                            claims: new List<Claim>(),
-                            expires: DateTime.MaxValue,
-                            signingCredentials: signinCredentials
-                        );
-                        var tokenString = new JwtSecurityTokenHandler().WriteToken(tokeOptions);
+
+                        var tokenHandler = new JwtSecurityTokenHandler();
+                        var key = Encoding.ASCII.GetBytes(_appSettings.SecretJWT);
+                        var tokenDescriptor = new SecurityTokenDescriptor
+                        {
+                            Subject = new ClaimsIdentity(new Claim[]
+                            {
+                                new Claim(ClaimTypes.Name, user.Id.ToString())
+                            }),
+                            Expires = DateTime.UtcNow.AddDays(7),
+                            SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256)
+                        };
+                        var token = tokenHandler.CreateToken(tokenDescriptor);
+                        var tokenString = tokenHandler.WriteToken(token);
                         return Ok(new { Token = tokenString });
+
                     }
 
 

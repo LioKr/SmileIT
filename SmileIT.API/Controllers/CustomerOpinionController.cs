@@ -18,8 +18,9 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace SmileIT.API.Controllers
 {
-    [Route("api/[controller]")]
+    //[Authorize]
     [ApiController]
+    [Route("api/[controller]")]
     public class CustomerOpinionController : ControllerBase
     {
         private IRepository<L.CustomerOpinion, int> _service;
@@ -29,19 +30,19 @@ namespace SmileIT.API.Controllers
             _service = new CustomerOpinionRepositoryAPI();
         }
 
-        [HttpGet, Authorize]
+        [HttpGet]
         public IEnumerable<L.CustomerOpinion> Get()
         {
             return _service.Get();
         }
 
-        [HttpGet("{id}"), Authorize]
+        [HttpGet("{id}")]
         public L.CustomerOpinion Get(int id)
         {
             return _service.Get(id);
         }
 
-        [HttpPost, Authorize]
+        [HttpPost, AllowAnonymous]
         //[AcceptVerbs("POST")]
         //[Route("AddUser")] 
         public L.CustomerOpinion AddCustomerOpinion(CustomerOpinionInfo entityInfo)
@@ -49,7 +50,7 @@ namespace SmileIT.API.Controllers
             return _service.Insert(new L.CustomerOpinion(entityInfo.SmileyId, entityInfo.Commentary, entityInfo.Created_at));
         }
 
-        [HttpPut("{id}"), Authorize]
+        [HttpPut("{id}")]
         //[AcceptVerbs("PUT")]
         //[Route("UpdateUser/{id}")]
         public L.CustomerOpinion UpdateCustomerOpinion(int id, CustomerOpinionInfo entityInfo)
@@ -57,7 +58,7 @@ namespace SmileIT.API.Controllers
             return _service.Update(id, new L.CustomerOpinion(entityInfo.SmileyId, entityInfo.Commentary, entityInfo.Created_at));
         }
 
-        [HttpDelete("{id}"), Authorize]
+        [HttpDelete("{id}")]
         //[AcceptVerbs("DELETE")]
         //[Route("DeleteUser/{id}")]
         public void Delete(int id)

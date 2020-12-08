@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-//import { AuthService } from '../shared/services/auth.service';
+import { AuthenticationService } from '../shared/services/authentication.service';
 
 @Component({
   selector: 'app-login',
@@ -8,9 +8,8 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  //constructor(public service: AuthService) { }
+  constructor(public service: AuthenticationService) { }
 
-  constructor() { }
 
   ngOnInit(): void {
     this.resetForm();
@@ -20,21 +19,21 @@ export class LoginComponent implements OnInit {
     if (form != null){
       form.form.reset();
     }
-    // else {
-    // this.service.loginData = {
-    //   Username: '',
-    //   Password: ''
-    //   };
-    // }
+    else {
+    this.service.loginData = {
+      Username: '',
+      Password: ''
+      };
+    }
   }
 
   onSubmit(form: NgForm) {
-      // this.service.loginUser().subscribe(
-      //   res => {
-      //     this.resetForm(form);
-      //     console.log("logged in successfully!");
-      //   },
-      //   err => { console.log(err); }
-      // );
+      this.service.login().subscribe(
+        res => {
+          this.resetForm(form);
+          console.log("logged in successfully!");
+        },
+        err => { console.log(err); }
+      );
   }
 }

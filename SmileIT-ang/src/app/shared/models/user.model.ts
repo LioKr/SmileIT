@@ -4,4 +4,5 @@ export class User {
     Email: string;
     Role: number;
     Password: string;
+    token?: string;
 }

@@ -19,6 +19,8 @@ import { CustomerOpinionDetailFormComponent } from './customer-opinion-details/c
 import { VoteSmileyComponent } from './customer-opinion/vote-smiley/vote-smiley.component';
 import { VoteThanksComponent } from './customer-opinion/vote-thanks/vote-thanks.component';
 import { LoginComponent } from './login/login.component';
+import { UserDetailsComponent } from './users/user-details/user-details.component';
+import { UserDetailFormComponent } from './users/user-details/user-detail-form/user-detail-form.component';
 
 
 
@@ -31,7 +33,9 @@ import { LoginComponent } from './login/login.component';
     CustomerOpinionDetailFormComponent,
     VoteSmileyComponent,
     VoteThanksComponent,
-    LoginComponent
+    LoginComponent,
+    UserDetailsComponent,
+    UserDetailFormComponent
   ],
   imports: [
     BrowserModule,

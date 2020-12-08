@@ -5,12 +5,14 @@ import { VoteSmileyComponent } from './customer-opinion/vote-smiley/vote-smiley.
 import { VoteThanksComponent } from './customer-opinion/vote-thanks/vote-thanks.component';
 import { FourOhFourComponent } from './four-oh-four/four-oh-four.component';
 import { LoginComponent } from './login/login.component';
+import { UserDetailsComponent } from './users/user-details/user-details.component';
 
 const routes: Routes = [
   {path: 'vote', component: VoteSmileyComponent},
   {path: 'thanks', component: VoteThanksComponent},
   { path: 'customerOpinion', component: CustomerOpinionDetailsComponent},
-  {path: 'login', component: LoginComponent},
+  { path: 'user', component: UserDetailsComponent},
+  { path: 'login', component: LoginComponent},
   { path: '', component: VoteSmileyComponent},
   { path: 'not-found', component: FourOhFourComponent },
   { path: '**', redirectTo: 'not-found'}

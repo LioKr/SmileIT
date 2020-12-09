@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthenticationService } from '../shared/services/authentication.service';
 import { CustomerOpinionService } from '../shared/services/customer-opinion.service';
 
 @Component({
@@ -8,7 +9,8 @@ import { CustomerOpinionService } from '../shared/services/customer-opinion.serv
 })
 export class CustomerOpinionDetailsComponent implements OnInit {
 
-  constructor(public service: CustomerOpinionService) { }
+  constructor(public service: CustomerOpinionService, private s: AuthenticationService) { }
+
 
   ngOnInit(): void {
     this.service.refreshList();

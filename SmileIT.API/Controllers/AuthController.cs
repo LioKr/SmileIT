@@ -98,6 +98,14 @@ namespace SmileIT.API.Controllers
                         };
                         var token = tokenHandler.CreateToken(tokenDescriptor);
                         var tokenString = tokenHandler.WriteToken(token);
+                        //return Ok(new {
+                        //        Id = user.Id,
+                        //        Username = user.Username,
+                        //        Email = user.Email,
+                        //        Role = user.Role,
+                        //        Password = "*******",
+                        //        Token = tokenString
+                        //        });
                         return Ok(new { Token = tokenString });
 
                     }

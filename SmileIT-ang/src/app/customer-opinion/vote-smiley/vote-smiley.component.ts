@@ -13,7 +13,7 @@ export class VoteSmileyComponent implements OnInit {
 
   wantToAddComment: boolean = false;
 
-  constructor(public service: CustomerOpinionService, private router: Router) { }
+  constructor(public service: CustomerOpinionService, private router: Router, private authService: AuthenticationService) { }
 
   ngOnInit(): void {
     this.resetForm();
@@ -36,6 +36,15 @@ export class VoteSmileyComponent implements OnInit {
 
   ToggleWantToAddComment(){
     this.wantToAddComment = !this.wantToAddComment;
+  }
+
+  
+  logout(){
+    this.authService.logout();
+  }
+
+  isLoggedIn(){
+    return this.authService.isLoggedIn();
   }
 
   onVote1(form: NgForm){

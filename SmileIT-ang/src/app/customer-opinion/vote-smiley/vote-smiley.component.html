@@ -1,5 +1,12 @@
 <div class="content mt-0 mb-0" role="main">
 
+   
+
+  <div *ngIf="isLoggedIn() === true">
+    <span class="text-"> Attention vous êtes logged in !</span>
+    <button class="btn btn-danger btn-sm btn-inline ml-2" (click)="logout()">Logout</button>
+  </div>
+
   <h1 class="mt-0">How was your experience ?</h1>
   <h2>We'd love it if you'd let us know!</h2>
   <button class="btn btn-info btn-sm btn-block btn-width-spec" (click)="ToggleWantToAddComment()"> Click me to add a comment ;) </button>

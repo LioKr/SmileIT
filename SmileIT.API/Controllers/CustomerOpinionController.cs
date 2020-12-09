@@ -18,7 +18,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace SmileIT.API.Controllers
 {
-    //[Authorize]
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class CustomerOpinionController : ControllerBase

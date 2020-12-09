@@ -2,12 +2,12 @@
     
       <div class="form-group">
         <label data-error="Required field!">Username :</label>
-        <input class="form-control form-control-lg" type="text" name="UserName" #UserName="ngModel" [(ngModel)]="service.loginData.Username" required>
+        <input class="form-control form-control-lg" type="text" name="UserName" #UserName="ngModel" [(ngModel)]="service.loginFormData.Username" required>
         
       </div>
       <div class="form-group">
         <label [attr.data-error]="Password.errors!=null?(Password.errors.required?'Required field!':'Minimum 3 characters needed'):''">Password :</label>
-        <input class="form-control form-control-lg" type="password" name="Password" #Password="ngModel" [(ngModel)]="service.loginData.Password" required>
+        <input class="form-control form-control-lg" type="password" name="Password" #Password="ngModel" [(ngModel)]="service.loginFormData.Password" required>
       </div>
    
     

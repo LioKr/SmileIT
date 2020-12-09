@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
       form.form.reset();
     }
     else {
-    this.service.loginData = {
+    this.service.loginFormData = {
       Username: '',
       Password: ''
       };

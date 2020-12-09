@@ -11,12 +11,13 @@ import { CustomerOpinionService } from '../../shared/services/customer-opinion.s
 })
 export class VoteSmileyComponent implements OnInit {
 
+  wantToAddComment: boolean = false;
+
   constructor(public service: CustomerOpinionService, private router: Router) { }
 
   ngOnInit(): void {
     this.resetForm();
   }
-
   
   resetForm (form?: NgForm) {
     if (form != null){
@@ -29,7 +30,12 @@ export class VoteSmileyComponent implements OnInit {
       Commentary: '',
       Created_at: null
       };
+      this.wantToAddComment = false;
     }
+  }
+
+  ToggleWantToAddComment(){
+    this.wantToAddComment = !this.wantToAddComment;
   }
 
   onVote1(form: NgForm){

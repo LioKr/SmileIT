@@ -23,6 +23,7 @@ import { VoteThanksComponent } from './customer-opinion/vote-thanks/vote-thanks.
 import { LoginComponent } from './login/login.component';
 import { UserDetailsComponent } from './users/user-details/user-details.component';
 import { UserDetailFormComponent } from './users/user-details/user-detail-form/user-detail-form.component';
+import { FourOhOneComponent } from './four-oh-one/four-oh-one.component';
 
 
 
@@ -37,7 +38,8 @@ import { UserDetailFormComponent } from './users/user-details/user-detail-form/u
     VoteThanksComponent,
     LoginComponent,
     UserDetailsComponent,
-    UserDetailFormComponent
+    UserDetailFormComponent,
+    FourOhOneComponent
   ],
   imports: [
     BrowserModule,

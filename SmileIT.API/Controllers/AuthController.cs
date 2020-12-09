@@ -20,9 +20,11 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using SmileIT.API.Utils;
 using Microsoft.Extensions.Options;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SmileIT.API.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class AuthController : ControllerBase
@@ -39,28 +41,9 @@ namespace SmileIT.API.Controllers
            _connection = new Connection(ConnectionString);
             _appSettings = appSettings.Value;
         }
+              
 
-        [HttpPost]
-        [Route("Register")]
-        public HttpResponseMessage Register(RegisterInfo entity)
-        {
-            try
-            {
-                if (!(entity is null) && ModelState.IsValid)
-                {
-                    _service.Insert(new L.User(entity.Email,entity.Username, entity.Password, entity.Role));
-
-                    return new HttpResponseMessage(HttpStatusCode.OK);
-                }
-            }
-            catch (SqlException exception)
-            {
-                return new HttpResponseMessage(HttpStatusCode.BadRequest);
-            }
-            return new HttpResponseMessage(HttpStatusCode.BadRequest);
-        }
-
-        [HttpPost]
+        [HttpPost, AllowAnonymous]
         [Route("Login")]
         public IActionResult Login(LoginInfo entity)
         {
@@ -97,7 +80,9 @@ namespace SmileIT.API.Controllers
                             SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256)
                         };
                         var token = tokenHandler.CreateToken(tokenDescriptor);
-                        var tokenString = tokenHandler.WriteToken(token);
+                        var tokenString = tokenHandler.WriteToken(token);                        
+                        return Ok(new { Token = tokenString });
+                        // TODO: return the user instead, with the code below:
                         //return Ok(new {
                         //        Id = user.Id,
                         //        Username = user.Username,
@@ -106,53 +91,16 @@ namespace SmileIT.API.Controllers
                         //        Password = "*******",
                         //        Token = tokenString
                         //        });
-                        return Ok(new { Token = tokenString });
 
                     }
-
-
-
-                        //return new HttpResponseMessage(HttpStatusCode.OK)
-                        //{
-                        //    Content = new StringContent(JsonConvert.SerializeObject(user))
-                        //};
-
-                    //Command command = new Command("SP_User_Check", true);
-                    //command.AddParameter("pUsername", entity.Username);
-                    //command.AddParameter("pPassword", entity.Password);
-                    //bool isOK = (bool)_connection.ExecuteScalar<LoginInfo>(command);
-
-                    //if (isOK == true)
-                    //{
-                    //    var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superSecretKey@345"));
-                    //    var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
-                    //    var tokeOptions = new JwtSecurityToken(
-                    //        issuer: "https://localhost:44356",
-                    //        audience: "https://localhost:44356",
-                    //        claims: new List<Claim>(),
-                    //        expires: DateTime.MaxValue,
-                    //        signingCredentials: signinCredentials
-                    //    );
-                    //    var tokenString = new JwtSecurityTokenHandler().WriteToken(tokeOptions);
-                    //    return Ok(new { Token = tokenString });
-                    //}
-                    //else
-                    //{
-                    //    return Unauthorized();
-                    //}
-
                 }
             }
             catch (SqlException exception)
             {
                 return Unauthorized();
-
             }
 
             return Unauthorized();
-
         }
-
-
     }
 }

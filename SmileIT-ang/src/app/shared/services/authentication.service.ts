@@ -25,10 +25,22 @@ export class AuthenticationService {
     }
 
     
-    getToken(){
+    getCurrentTokenValue(){
         return localStorage.getItem('jwtToken');
     }
     
+    isLoggedIn(){
+        if(this.getCurrentTokenValue() != ''){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    isLoggedOut(){
+        return !this.isLoggedIn();
+    }
 
     logout() {
         // remove user from local storage to log user out

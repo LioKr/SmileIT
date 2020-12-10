@@ -7,9 +7,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
-import { CustomerReviewSmileyComponent } from './customer-review-smiley/customer-review-smiley.component';
-import { CustomerReviewCommentaryComponent } from './customer-review-commentary/customer-review-commentary.component';
-import { CustomerReviewThanksComponent } from './customer-review-thanks/customer-review-thanks.component';
 // import { MatToolbarModule, MatIconModule, MatSidenavModule, MatListModule, MatButtonModule } from  '@angular/material';
 
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -23,6 +20,11 @@ import { CustomerOpinionDetailFormComponent } from './customer-opinion-details/c
 import { VoteSmileyComponent } from './customer-opinion/vote-smiley/vote-smiley.component';
 import { VoteThanksComponent } from './customer-opinion/vote-thanks/vote-thanks.component';
 import { LoginComponent } from './login/login.component';
+import { CustomerOpinionAverageBetweenTwoDateDetailsComponent } from './customer-opinion-details/customer-opinion-average-between-two-date-details/customer-opinion-average-between-two-date-details.component';
+import { CustomerOpinionAverageBetweenTwoDateFormComponent } from './customer-opinion-details/customer-opinion-average-between-two-date-details/customer-opinion-average-between-two-date-form/customer-opinion-average-between-two-date-form.component';
+import { CustomerOpinionDetailsReadListBetweenTwoDateComponent } from './customer-opinion-details/customer-opinion-details-read-list-between-two-date/customer-opinion-details-read-list-between-two-date.component';
+import { CustomerOpinionDetailsReadListBetweenTwoDateFormComponent } from './customer-opinion-details/customer-opinion-details-read-list-between-two-date/customer-opinion-details-read-list-between-two-date-form/customer-opinion-details-read-list-between-two-date-form.component';
+import { CustomerOpinionListComponent } from './customer-opinion-list/customer-opinion-list.component';
 
 
 
@@ -30,15 +32,17 @@ import { LoginComponent } from './login/login.component';
 @NgModule({
   declarations: [
     AppComponent,
-    CustomerReviewSmileyComponent,
-    CustomerReviewCommentaryComponent,
-    CustomerReviewThanksComponent,
     FourOhFourComponent,
     CustomerOpinionDetailsComponent,
     CustomerOpinionDetailFormComponent,
     VoteSmileyComponent,
     VoteThanksComponent,
-    LoginComponent
+    LoginComponent,
+    CustomerOpinionAverageBetweenTwoDateDetailsComponent,
+    CustomerOpinionAverageBetweenTwoDateFormComponent,
+    CustomerOpinionDetailsReadListBetweenTwoDateComponent,
+    CustomerOpinionDetailsReadListBetweenTwoDateFormComponent,
+    CustomerOpinionListComponent
   ],
   imports: [
     BrowserModule,

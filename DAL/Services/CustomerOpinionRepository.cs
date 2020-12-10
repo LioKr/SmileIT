@@ -3,17 +3,18 @@ using DAL.Mappers;
 using DAL.Repository;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using ToolBox;
 
 namespace DAL.Services
 {
-    public class CustomerOpinionRepository:IRepository<CustomerOpinion, int>
+    public class CustomerOpinionRepository: IRepository<CustomerOpinion, int> 
     {
-        private const string ConnectionString = @"Data Source=desktop-12fd2ha\sqlexpress;Initial Catalog=SmileITv2.DB;Integrated Security=True"; //lk connection string
-        
-        //@"Data Source=DELL-M4500\SQLEXPRESS;Initial Catalog=SmileIT.DB;Integrated Security=True" // jy Connection string
+        private const string ConnectionString = 
+              //@"Data Source=desktop-12fd2ha\sqlexpress;Initial Catalog=SmileITv2.DB;Integrated Security=True"; //lk connection string
+              @"Data Source=DELL-M4500\SQLEXPRESS;Initial Catalog=SmileIT.DB;Integrated Security=True"; // jy Connection string
         private Connection _dbConnection;
 
         public CustomerOpinionRepository()
@@ -69,6 +70,27 @@ namespace DAL.Services
                 return this.Get(IdCustomerOp);
             }
             return entity;
+        }
+        //public IEnumerable<string> GetAvg(string dateStart, string dateEnd)
+        //{
+        //    Command command = new Command("SP_CustomerOpinion_ReadAverageBetweenTwoDate", true);
+        //    command.AddParameter("DateStartString", dateStart);
+        //    command.AddParameter("DateEndString", dateEnd);
+        //    return _dbConnection.ExecuteReader(command, (dr) => dr.ToString());
+        //}
+        public IEnumerable<CustomerOpinionAverageBetweenTwoDate> GetAvg(string dateStart, string dateEnd)
+        {
+            Command command = new Command("SP_CustomerOpinion_ReadAverageBetweenTwoDate", true);
+            command.AddParameter("DateStartString", dateStart);
+            command.AddParameter("DateEndString", dateEnd);
+            return _dbConnection.ExecuteReader(command, (dr) => dr.ToCustomerOpinionAverageBewteenTwoDate());
+        }
+        public IEnumerable<CustomerOpinionReadListBetweenTwoDate> GetListBetweenTwoDates(string dateStart,string dateEnd)
+        {
+            Command cmd = new Command("SP_CustomerOpinion_ReadListBetweenTwoDate", true);
+            cmd.AddParameter("DateStartString", dateStart);
+            cmd.AddParameter("DateEndString", dateEnd);
+            return _dbConnection.ExecuteReader(cmd, (dr) => dr.ToCustomerOpinionReadListBetweenTwoDate());
         }
     }
 }

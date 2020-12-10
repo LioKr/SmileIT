@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Data;
 using DAL.Data;
+using System.Runtime.InteropServices.WindowsRuntime;
 
 namespace DAL.Mappers
 {
@@ -30,6 +31,25 @@ namespace DAL.Mappers
                 Created_at = (DateTime)dR["CustomerReviewDateTime"]
                 //SagaName = (dR["SagaName"] != DBNull.Value) ? dR["SagaName"].ToString() : null,
                 //LastEdit = (dR["LastEdit"] != DBNull.Value) ? (DateTime?)dR["LastEdit"] : null
+            };
+        }
+
+        internal static CustomerOpinionAverageBetweenTwoDate ToCustomerOpinionAverageBewteenTwoDate(this IDataRecord dr)
+        {
+            return new CustomerOpinionAverageBetweenTwoDate() { 
+                SmileyString = (string)dr[0],
+                NumberOfVote = (int)dr[1],
+                Percent = (double)dr[2]
+            };
+        }
+        internal static CustomerOpinionReadListBetweenTwoDate ToCustomerOpinionReadListBetweenTwoDate(this IDataRecord dr)
+        {
+            return new CustomerOpinionReadListBetweenTwoDate()
+            {
+                CustomerReviewDateTime = (DateTime)dr[0],
+                idSmiley = (int)dr[1],
+                CustomerComment = (string)dr[2],
+                Username = (string)dr[3]
             };
         }
     }

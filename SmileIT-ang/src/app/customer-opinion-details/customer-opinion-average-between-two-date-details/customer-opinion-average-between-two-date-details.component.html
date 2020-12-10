@@ -1,0 +1,18 @@
+    <div>
+        <table class="table">
+            <thead class="thead-light">
+                <tr>
+
+                    <th>Smiley Type</th>
+                    <th>Number of vote </th>
+                    <th>Percent </th>
+
+                </tr>
+            </thead>
+            <tr *ngFor="let item of serviceAvg.list">
+                <td>{{item.SmileyString}}</td>
+                <td>{{item.NumberOfVote}}</td>
+                <td>{{item.Percent}} %</td>
+            </tr>
+        </table>
+    </div>

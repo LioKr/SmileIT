@@ -1,0 +1,20 @@
+<p>customer-opinion-details-read-list-between-two-date works!</p>
+<div>
+    <table class="table">
+        <thead class="thead-light">
+            <tr>
+
+                <th>Date</th>
+                <th>Smiley</th>
+                <th>Comment from customer </th>
+                <th>User</th>
+            </tr>
+        </thead>
+        <tr *ngFor="let item of serviceList.list">
+            <td>{{item.CustomerReviewDateTime}}</td>
+            <td>{{item.idSmiley}}</td>
+            <td>{{item.CustomerComment}}</td>
+            <td>{{item.Username}}</td>
+        </tr>
+    </table>
+</div>

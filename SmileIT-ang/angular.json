@@ -127,5 +127,8 @@
       }
     }
   },
-  "defaultProject": "SmileIT-ang"
+  "defaultProject": "SmileIT-ang",
+  "cli": {
+    "analytics": "273bbdb0-3557-4804-88f9-512da6a7db3a"
+  }
 }

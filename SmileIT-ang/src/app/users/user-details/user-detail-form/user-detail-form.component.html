@@ -9,23 +9,11 @@
     <div class="form-group">
         <label>Email</label>
         <input type="email" name="Email" #Email="ngModel" [(ngModel)]="service.formData.Email"
-            class="form-control form-control-lg" placeholder="Email"
+            class="form-control form-control-lg" placeholder="Email" required
             [class.invalid]="Email.invalid &#038;&#038; Email.touched">
     </div>
     <div class="form-group">
         <label class="label mb-2">Role</label>
-        <!-- <div class="p-t-10">
-            <label class="radio-container m-r-45">Super Admin
-                <input id="SuperAdmin" type="radio" value="1" name="Role" #Role="ngModel" 
-                [(ngModel)]="service.formData.Role" class="form-check-input">
-                <span class="checkmark"></span>
-            </label>
-            <label class="radio-container">Employee
-                <input id="Employee" type="radio" value="3" name="Role" #Role="ngModel" 
-                [(ngModel)]="service.formData.Role" class="form-check-input">
-                <span class="checkmark"></span>
-            </label>
-        </div> -->
         <div class="form-check mb-2">
             <input id="SuperAdmin" type="radio" value="1" name="Role" #Role="ngModel" 
             [(ngModel)]="service.formData.Role" class="form-check-input">
@@ -46,6 +34,7 @@
         
 
     <div class="form-group">
-        <button class="btn btn-info btn-lg btn-block" type="submit" [disabled]="form.invalid">SUBMIT</button>
+        <button *ngIf="service.formData.Id === 0" class="btn btn-info btn-lg btn-block" type="submit" [disabled]="form.invalid">Insert</button>
+        <button *ngIf="service.formData.Id != 0" class="btn btn-info btn-lg btn-block" type="submit" [disabled]="form.invalid">Update n°{{service.formData.Id}}</button>
     </div>
 </form>

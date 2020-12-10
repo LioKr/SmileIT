@@ -4,7 +4,7 @@
 --use SmileIT.DB
 
 INSERT INTO Roles (Role_Name,Description) 
-	VALUES ('Administrator','Administrator is a Role with all Privileges'),('Public','Public is for everyone, insert an opinion only')
+	VALUES ('Administrator','Administrator is a Role with all Privileges'),('Public','Public is for everyone, insert an opinion only'),('Employee','Employee is a Role with Read options')
 
 INSERT INTO Smileys ([Label]) 
 VALUES ('Très Mauvais'),('Mauvais'),('Moyen'),('Bien'),('Très Bien')

@@ -32,9 +32,8 @@ namespace SmileIT.API
         {
 
             //JWT - Don't update Nugget the latest version is not compatible
-            // JWT configurations
             // configure strongly typed settings objects
-            //https://medium.com/net-core-api-jwt-authentication/net-core-api-jwt-authentication-380adcbee705
+            // https://jasonwatmore.com/post/2018/08/14/aspnet-core-21-jwt-authentication-tutorial-with-example-api
             var appSettingsSection = Configuration.GetSection("AppSettings");
             services.Configure<AppSettings>(appSettingsSection);
 
@@ -67,8 +66,6 @@ namespace SmileIT.API
             });
 
 
-           
-
             //Connection String
             //Refer appsetting.json
             //var connectionString = Configuration.GetConnectionString("DefaultConnection");
@@ -80,6 +77,7 @@ namespace SmileIT.API
 
             //add cors package
             services.AddCors();
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -114,6 +112,7 @@ namespace SmileIT.API
             {
                 endpoints.MapControllers();
             });
+
         }
     }
 }

@@ -8,12 +8,22 @@ import { Router } from '@angular/router';
 })
 export class VoteThanksComponent implements OnInit {
 
+
   constructor(private router: Router) { }
 
   ngOnInit(): void {
+  this.autoRedirectAfter3secondsWithoutAction();
   }
 
   goToVoteMenu() {
     this.router.navigate(['vote']);
   }
+
+  autoRedirectAfter3secondsWithoutAction(){
+    setTimeout(() => {
+        this.goToVoteMenu();
+    }, 3000);
+  }
+  
+
 }

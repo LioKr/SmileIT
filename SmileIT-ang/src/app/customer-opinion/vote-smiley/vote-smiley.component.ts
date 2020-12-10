@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthenticationService } from 'src/app/shared/services/authentication.service';
 import { CustomerOpinionService } from '../../shared/services/customer-opinion.service';
 
 @Component({
@@ -10,12 +11,41 @@ import { CustomerOpinionService } from '../../shared/services/customer-opinion.s
 })
 export class VoteSmileyComponent implements OnInit {
 
-  constructor(public service: CustomerOpinionService, private router: Router) { }
+  wantToAddComment: boolean = false;
+
+  constructor(public service: CustomerOpinionService, private router: Router, private authService: AuthenticationService) { }
 
   ngOnInit(): void {
+    this.resetForm();
+  }
+  
+  resetForm (form?: NgForm) {
+    if (form != null){
+      form.form.reset();
+    }
+    else {
+    this.service.formData = {
+      Id: 0,
+      SmileyId: 0,
+      Commentary: '',
+      Created_at: null
+      };
+      this.wantToAddComment = false;
+    }
   }
 
+  ToggleWantToAddComment(){
+    this.wantToAddComment = !this.wantToAddComment;
+  }
 
+  
+  logout(){
+    this.authService.logout();
+  }
+
+  isLoggedIn(){
+    return this.authService.isLoggedIn();
+  }
 
   onVote1(form: NgForm){
     this.service.formData.SmileyId = 1;

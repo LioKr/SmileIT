@@ -5,6 +5,4 @@ In angular =>
 
 Open Terminal and run =>
 
-'npm install' & 
-'npm install @auth0/angular-jwt' &
-'npm install moment --save'
+'npm install'

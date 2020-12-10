@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CustomerOpinionReadListBewteenTwoDateService } from 'src/app/shared/services/customer-opinion-read-list-bewteen-two-date.service';
+import { CustomerOpinionReadListBetweenTwoDateService } from 'src/app/shared/services/customer-opinion-read-list-between-two-date.service';
 
 @Component({
   selector: 'app-customer-opinion-list-between-two-date',
@@ -8,7 +8,7 @@ import { CustomerOpinionReadListBewteenTwoDateService } from 'src/app/shared/ser
 })
 export class CustomerOpinionListBetweenTwoDateComponent implements OnInit {
 
-  constructor(public serviceList : CustomerOpinionReadListBewteenTwoDateService) { }
+  constructor(public serviceList : CustomerOpinionReadListBetweenTwoDateService) { }
 
   ngOnInit(): void {
   }

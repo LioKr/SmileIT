@@ -33,6 +33,7 @@
       <a *ngIf="isLoggedIn() === false" mat-button routerLinkActive="active" [routerLink]="'/login'"> Login </a>
       <a *ngIf="isLoggedIn() === true" mat-button routerLinkActive="active" [routerLink]="'/vote'" (click)="logout()"> Log out </a>
       <a *ngIf="isLoggedIn() === true" mat-button routerLinkActive="active" [routerLink]="'/customerOpinion'"> CustomerOpinions </a>
+      <a *ngIf="isLoggedIn() === true" mat-button routerLinkActive="active" [routerLink]="'/customerOpinionStats'"> Statistiques </a>
       <a *ngIf="isLoggedIn() === true" mat-button routerLinkActive="active" [routerLink]="'/customerOpinionList'">CustomerOpinion Listing</a>
       <a *ngIf="isLoggedIn() === true" mat-button routerLinkActive="active" [routerLink]="'/user'"> Users </a>  
 

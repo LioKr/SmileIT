@@ -6,7 +6,7 @@ import { CustomerOpinionReadListBetweenTwoDate } from '../models/customer-opinio
 @Injectable({
   providedIn: 'root'
 })
-export class CustomerOpinionReadListBewteenTwoDateService {
+export class CustomerOpinionReadListBetweenTwoDateService {
 
   constructor(private http: HttpClient) { }
 

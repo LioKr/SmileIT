@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CustomerOpinionReadListBewteenTwoDateService } from '../../../shared/services/customer-opinion-read-list-bewteen-two-date.service'
+import { CustomerOpinionReadListBetweenTwoDateService } from '../../../shared/services/customer-opinion-read-list-between-two-date.service'
 import { NgForm } from '@angular/forms';
 import { formatDate } from '@angular/common';
 
@@ -10,7 +10,7 @@ import { formatDate } from '@angular/common';
 })
 export class CustomerOpinionListBetweenTwoDateFormComponent implements OnInit {
 
-  constructor(public serviceList: CustomerOpinionReadListBewteenTwoDateService) { }
+  constructor(public serviceList: CustomerOpinionReadListBetweenTwoDateService) { }
 
   ngOnInit(): void {
   }

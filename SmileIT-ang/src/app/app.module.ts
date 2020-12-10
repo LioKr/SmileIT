@@ -31,11 +31,6 @@ import { CustomerOpinionDetailFormComponent } from './customer-opinion-details/c
 import { VoteSmileyComponent } from './customer-opinion/vote-smiley/vote-smiley.component';
 import { VoteThanksComponent } from './customer-opinion/vote-thanks/vote-thanks.component';
 import { LoginComponent } from './login/login.component';
-// feature/jy_CustomersOpinionsAverage
-import { CustomerOpinionAverageBetweenTwoDateDetailsComponent } from './customer-opinion-details/customer-opinion-average-between-two-date-details/customer-opinion-average-between-two-date-details.component';
-import { CustomerOpinionAverageBetweenTwoDateFormComponent } from './customer-opinion-details/customer-opinion-average-between-two-date-details/customer-opinion-average-between-two-date-form/customer-opinion-average-between-two-date-form.component';
-import { CustomerOpinionDetailsReadListBetweenTwoDateComponent } from './customer-opinion-details/customer-opinion-details-read-list-between-two-date/customer-opinion-details-read-list-between-two-date.component';
-import { CustomerOpinionDetailsReadListBetweenTwoDateFormComponent } from './customer-opinion-details/customer-opinion-details-read-list-between-two-date/customer-opinion-details-read-list-between-two-date-form/customer-opinion-details-read-list-between-two-date-form.component';
 import { CustomerOpinionListComponent } from './customer-opinion-list/customer-opinion-list.component';
 
 import { UserDetailsComponent } from './users/user-details/user-details.component';
@@ -43,8 +38,6 @@ import { UserDetailFormComponent } from './users/user-details/user-detail-form/u
 import { FourOhOneComponent } from './four-oh-one/four-oh-one.component';
 import { NumberToSmileyLogoPipe } from './pipes/number-to-smiley-logo.pipe';
 import { CustomerOpinionStatsComponent } from './customer-opinion-stats/customer-opinion-stats.component';
-import { AverageBetweenTwoDateComponent } from './customer-opinion-stats/average-between-two-date/average-between-two-date.component';
-import { FormComponent } from './customer-opinion-stats/average-between-two-date/form/form.component';
 import { CustomerOpinionStatsAverageBetweenTwoDateComponent } from './customer-opinion-stats/customer-opinion-stats-average-between-two-date/customer-opinion-stats-average-between-two-date.component';
 import { CustomerOpinionStatsAverageBetweenTwoDateFormComponent } from './customer-opinion-stats/customer-opinion-stats-average-between-two-date/customer-opinion-stats-average-between-two-date-form/customer-opinion-stats-average-between-two-date-form.component';
 import { CustomerOpinionListBetweenTwoDateComponent } from './customer-opinion-list/customer-opinion-list-between-two-date/customer-opinion-list-between-two-date.component';
@@ -63,19 +56,12 @@ import { CustomerOpinionListBetweenTwoDateFormComponent } from './customer-opini
     VoteSmileyComponent,
     VoteThanksComponent,
     LoginComponent,
-//feature/jy_CustomersOpinionsAverage
-    CustomerOpinionAverageBetweenTwoDateDetailsComponent,
-    CustomerOpinionAverageBetweenTwoDateFormComponent,
-    CustomerOpinionDetailsReadListBetweenTwoDateComponent,
-    CustomerOpinionDetailsReadListBetweenTwoDateFormComponent,
     CustomerOpinionListComponent,
     UserDetailsComponent,
     UserDetailFormComponent,
     FourOhOneComponent,
     NumberToSmileyLogoPipe,
     CustomerOpinionStatsComponent,
-    AverageBetweenTwoDateComponent,
-    FormComponent,
     CustomerOpinionStatsAverageBetweenTwoDateComponent,
     CustomerOpinionStatsAverageBetweenTwoDateFormComponent,
     CustomerOpinionListBetweenTwoDateComponent,

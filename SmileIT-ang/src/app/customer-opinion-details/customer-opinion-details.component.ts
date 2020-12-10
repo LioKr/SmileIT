@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CustomerOpinionService } from '../shared/services/customer-opinion.service';
+//import { NumberToSmileyLogoPipe } from '../pipes/number-to-smiley-logo.pipe';
+
 
 @Component({
   selector: 'app-customer-opinion-details',
@@ -10,9 +12,10 @@ export class CustomerOpinionDetailsComponent implements OnInit {
 
   constructor(public service: CustomerOpinionService) { }
 
+
   ngOnInit(): void {
     this.service.refreshList();
-  }
+  }  
 
   populateForm(selectedRecord) {
     this.service.formData = Object.assign({}, selectedRecord);
@@ -24,7 +27,7 @@ export class CustomerOpinionDetailsComponent implements OnInit {
         .subscribe(res => {
           this.service.refreshList();
         },
-        err => { console.log(err); })
+        err => { console.log(err); });
     }
   }
 

@@ -12,11 +12,11 @@ SET @CountOfSmileyType = (SELECT COUNT(DISTINCT S.Label)
 			JOIN Smileys S on CO.FK_Smiley = S.id_Smiley)
 
 SELECT
-	S.Label 'Smiley Type',
+	S.id_Smiley 'Smiley Type',
 	COUNT(*) 'Number de Votes',
 	ROUND(CONVERT(float, Count(S.Label))/@CountOfSmileyType*100,2) 'Percentage'
 FROM CustomersOpinions CO
 JOIN Smileys S on CO.FK_Smiley = S.id_Smiley
-WHERE @DateStart >= @DateEnd OR  @DateStart <= @DateEnd
+WHERE CO.CustomerReviewDateTime BETWEEN @DateStart AND @DateEnd 
 GROUP BY S.Label, S.id_Smiley
 ORDER BY S.id_Smiley desc

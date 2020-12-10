@@ -14,12 +14,13 @@ using SmileIT.API.Models;
 using System.Net;
 using System.Data.SqlClient;
 using Newtonsoft.Json;
-
+using Microsoft.AspNetCore.Authorization;
 
 namespace SmileIT.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Authorize]
     [ApiController]
+    [Route("api/[controller]")]
     public class UserController : ControllerBase
     {
         private IRepository<L.User, int> _service;
@@ -42,24 +43,18 @@ namespace SmileIT.API.Controllers
         }
 
         [HttpPost]
-        //[AcceptVerbs("POST")]
-        //[Route("AddUser")]
         public L.User AddUser(UserInfo userInfo)
         {
             return _service.Insert(new L.User(userInfo.Email,userInfo.Username, userInfo.Password, userInfo.Role));
         }
 
         [HttpPut("{id}")]
-        //[AcceptVerbs("PUT")]
-        //[Route("UpdateUser/{id}")]
         public L.User UpdateUser(int id, UserInfo userInfo)
         {
             return _service.Update(id, new L.User(userInfo.Email,userInfo.Username, userInfo.Password, userInfo.Role));
         }
 
         [HttpDelete("{id}")]
-        //[AcceptVerbs("DELETE")]
-        //[Route("DeleteUser/{id}")]
         public void Delete(int id)
         {
             _service.Delete(id);

@@ -14,11 +14,13 @@ using SmileIT.API.Models;
 using System.Net;
 using System.Data.SqlClient;
 using Newtonsoft.Json;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SmileIT.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Authorize]
     [ApiController]
+    [Route("api/[controller]")]
     public class CustomerOpinionController : ControllerBase
     {
         private IRepository<L.CustomerOpinion, int> _service;
@@ -33,6 +35,16 @@ namespace SmileIT.API.Controllers
         {
             return _service.Get();
         }
+        [HttpGet("{dateStart},{dateEnd}")]
+        public IEnumerable<DAL.Data.CustomerOpinionAverageBetweenTwoDate> Getavg(string dateStart, string dateEnd)
+        {
+            return new S.CustomerOpinionRepository().GetAvg(dateStart, dateEnd);
+        }
+        [HttpGet("listBetweenTwoDate/{dateStart},{dateEnd}")]
+        public IEnumerable<DAL.Data.CustomerOpinionReadListBetweenTwoDate> GetListBetweenTwoDate(string dateStart, string dateEnd)
+        {
+            return new S.CustomerOpinionRepository().GetListBetweenTwoDates(dateStart, dateEnd);
+        }
 
         [HttpGet("{id}")]
         public L.CustomerOpinion Get(int id)
@@ -40,7 +52,7 @@ namespace SmileIT.API.Controllers
             return _service.Get(id);
         }
 
-        [HttpPost]
+        [HttpPost, AllowAnonymous]
         //[AcceptVerbs("POST")]
         //[Route("AddUser")] 
         public L.CustomerOpinion AddCustomerOpinion(CustomerOpinionInfo entityInfo)

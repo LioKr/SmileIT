@@ -14,50 +14,38 @@ using SmileIT.API.Models;
 using System.Net;
 using System.Data.SqlClient;
 using Newtonsoft.Json;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using SmileIT.API.Utils;
+using Microsoft.Extensions.Options;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SmileIT.API.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class AuthController : ControllerBase
     {
-       private const string ConnectionString = @"Data Source=desktop-12fd2ha\sqlexpress;Initial Catalog=SmileITv2.DB;Integrated Security=True"; //lk connection string
+       private const string ConnectionString = @"Data Source=desktop-12fd2ha\sqlexpress;Initial Catalog=SmileIT.DB;Integrated Security=True"; //lk connection string
                 //@"Data Source=DELL-M4500\SQLEXPRESS;Initial Catalog=SmileIT.DB;Integrated Security=True" // jy Connection string
         private Connection _connection;
-
+        private AppSettings _appSettings;
         private IRepository<L.User, int> _service;
 
-        public AuthController()
+        public AuthController(IOptions<AppSettings> appSettings)
         {
             _service = new UserRepositoryAPI();
            _connection = new Connection(ConnectionString);
+            _appSettings = appSettings.Value;
         }
+              
 
-        [HttpPost]
-        //[AcceptVerbs("POST")]
-        [Route("Register")]
-        public HttpResponseMessage Register(RegisterInfo entity)
-        {
-            try
-            {
-                if (!(entity is null) && ModelState.IsValid)
-                {
-                    _service.Insert(new L.User(entity.Email,entity.Username, entity.Password, entity.Role));
-
-                    return new HttpResponseMessage(HttpStatusCode.OK);
-                }
-            }
-            catch (SqlException exception)
-            {
-                return new HttpResponseMessage(HttpStatusCode.BadRequest);
-            }
-            return new HttpResponseMessage(HttpStatusCode.BadRequest);
-        }
-
-        [HttpPost]
-        //[AcceptVerbs("POST")]
+        [HttpPost, AllowAnonymous]
         [Route("Login")]
-        public HttpResponseMessage Login(LoginInfo entity)
+        public IActionResult Login(LoginInfo entity)
         {
             try
             {
@@ -76,24 +64,43 @@ namespace SmileIT.API.Controllers
                     }).SingleOrDefault();
 
                     if (user is null)
-                        return new HttpResponseMessage(HttpStatusCode.BadRequest);
+                        return Unauthorized();
                     else
-                        return new HttpResponseMessage(HttpStatusCode.OK)
+                    {
+
+                        var tokenHandler = new JwtSecurityTokenHandler();
+                        var key = Encoding.ASCII.GetBytes(_appSettings.SecretJWT);
+                        var tokenDescriptor = new SecurityTokenDescriptor
                         {
-                            Content = new StringContent(JsonConvert.SerializeObject(user))
+                            Subject = new ClaimsIdentity(new Claim[]
+                            {
+                                new Claim(ClaimTypes.Name, user.Id.ToString())
+                            }),
+                            Expires = DateTime.UtcNow.AddDays(7),
+                            SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256)
                         };
+                        var token = tokenHandler.CreateToken(tokenDescriptor);
+                        var tokenString = tokenHandler.WriteToken(token);                        
+                        return Ok(new { Token = tokenString });
+                        // TODO: return the user instead, with the code below:
+                        //return Ok(new {
+                        //        Id = user.Id,
+                        //        Username = user.Username,
+                        //        Email = user.Email,
+                        //        Role = user.Role,
+                        //        Password = "*******",
+                        //        Token = tokenString
+                        //        });
+
+                    }
                 }
             }
             catch (SqlException exception)
             {
-                return new HttpResponseMessage(HttpStatusCode.BadRequest);
-
+                return Unauthorized();
             }
 
-            return new HttpResponseMessage(HttpStatusCode.BadRequest);
-
+            return Unauthorized();
         }
-
-
     }
 }

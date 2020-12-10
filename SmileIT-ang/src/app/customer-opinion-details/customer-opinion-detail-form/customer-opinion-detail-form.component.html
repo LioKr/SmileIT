@@ -1,10 +1,4 @@
 <form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
-    <!-- <div class="form-group">
-        <label>CustomerOpinion Id</label>
-        <input name="Id" #Id="ngModel" [(ngModel)]="service.formData.Id"
-            class="form-control form-control-lg" placeholder="Id, 0 for new" required
-            [class.invalid]="Id.invalid &#038;&#038; Id.touched">
-    </div> -->
     <input type="hidden" name="Id" [value]="service.formData.Id">
     <div class="form-group">
         <label>SmileyId</label>
@@ -20,13 +14,17 @@
     </div>
     <div class="form-group">
         <label>Created_at</label>
-        <input name="Created_at" #Created_at="ngModel" [(ngModel)]="service.formData.Created_at"
+        <input *ngIf="service.formData.Id === 0" type="date" name="Created_at" #Created_at="ngModel" [(ngModel)]="service.formData.Created_at"
             class="form-control form-control-lg" placeholder="Created_at" required 
             [class.invalid]="Created_at.invalid &#038;&#038; Created_at.touched">
-    </div>
-        
+        <input *ngIf="service.formData.Id != 0" name="Created_at" #Created_at="ngModel" [(ngModel)]="service.formData.Created_at"
+            class="form-control form-control-lg" placeholder="Created_at" required 
+            [class.invalid]="Created_at.invalid &#038;&#038; Created_at.touched">
+    </div>        
 
     <div class="form-group">
-        <button class="btn btn-info btn-lg btn-block" type="submit" [disabled]="form.invalid">SUBMIT</button>
+        <button *ngIf="service.formData.Id === 0" class="btn btn-info btn-lg btn-block" type="submit" [disabled]="form.invalid">Insert</button>
+        <button *ngIf="service.formData.Id != 0" class="btn btn-info btn-lg btn-block" type="submit" [disabled]="form.invalid">Update n°{{service.formData.Id}}</button>
     </div>
+
 </form>

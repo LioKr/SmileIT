@@ -12,7 +12,7 @@
                     <thead class="thead-light">
                         <tr>
                             <th>Id</th>
-                            <th>SmileyId</th>
+                            <th>Smiley</th>
                             <th>Comment</th>
                             <th>Date of creation</th>
                             <th></th>
@@ -20,7 +20,7 @@
                     </thead>
                     <tr *ngFor="let pd of service.list">
                         <td (click)="populateForm(pd)">{{pd.Id}}</td>
-                        <td (click)="populateForm(pd)">{{pd.SmileyId}}</td>
+                        <td (click)="populateForm(pd)"><img class="circle-link mt-0 mb-0" src="{{pd.SmileyId | numberToSmileyLogo }}" ></td>
                         <td (click)="populateForm(pd)">{{pd.Commentary}}</td>
                         <td (click)="populateForm(pd)">{{pd.Created_at | date :'d/M/yyyy, h:mm a'}}</td>
                         <td>

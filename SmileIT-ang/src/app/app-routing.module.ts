@@ -6,13 +6,16 @@ import { VoteThanksComponent } from './customer-opinion/vote-thanks/vote-thanks.
 import { FourOhFourComponent } from './four-oh-four/four-oh-four.component';
 import { FourOhOneComponent } from './four-oh-one/four-oh-one.component';
 import { LoginComponent } from './login/login.component';
+import {CustomerOpinionListComponent} from './customer-opinion-list/customer-opinion-list.component';
 import { UserDetailsComponent } from './users/user-details/user-details.component';
 import { AuthGuard } from './_helpers/auth-guard.model';
-
+import { CustomerOpinionStatsComponent } from './customer-opinion-stats/customer-opinion-stats.component';
 
 const routes: Routes = [
   {path: 'vote', component: VoteSmileyComponent},
   {path: 'thanks', component: VoteThanksComponent},
+  { path: 'customerOpinionList', component: CustomerOpinionListComponent, canActivate: [AuthGuard]},
+  { path: 'customerOpinionStats', component: CustomerOpinionStatsComponent, canActivate: [AuthGuard]},
   { path: 'customerOpinion', component: CustomerOpinionDetailsComponent, canActivate: [AuthGuard]},
   { path: 'user', component: UserDetailsComponent, canActivate: [AuthGuard]},
   { path: 'login', component: LoginComponent},

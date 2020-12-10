@@ -9,6 +9,7 @@ import { AuthenticationService } from '../shared/services/authentication.service
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+
   constructor(public service: AuthenticationService, private router: Router) { }
 
 
@@ -20,6 +21,7 @@ export class LoginComponent implements OnInit {
     if (form != null){
       form.form.reset();
     }
+
     else {
     this.service.loginFormData = {
       Username: '',

@@ -43,5 +43,15 @@ namespace SmileIT.API.Services
         {
             return _globalService.Update(Id, entity.ToGlobal()).ToLocal();
         }
+        public IEnumerable<DM.CustomerOpinionAverageBetweenTwoDate> CustomerOpinionAverageBetweenTwoDate(string startDate, string endDate)
+        {
+            return new DS.CustomerOpinionRepository().GetAvg(startDate, endDate);
+        }
+        public IEnumerable<DM.CustomerOpinionReadListBetweenTwoDate> GetCustomerOpinionReadListBetweenTwoDates(string startDate, string endDate)
+            {
+                return new DS.CustomerOpinionRepository().GetListBetweenTwoDates(startDate, endDate);
+            }
+
+
     }    
 }

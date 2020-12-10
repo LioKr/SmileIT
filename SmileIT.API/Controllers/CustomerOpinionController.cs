@@ -35,6 +35,16 @@ namespace SmileIT.API.Controllers
         {
             return _service.Get();
         }
+        [HttpGet("{dateStart},{dateEnd}")]
+        public IEnumerable<DAL.Data.CustomerOpinionAverageBetweenTwoDate> Getavg(string dateStart, string dateEnd)
+        {
+            return new S.CustomerOpinionRepository().GetAvg(dateStart, dateEnd);
+        }
+        [HttpGet("listBetweenTwoDate/{dateStart},{dateEnd}")]
+        public IEnumerable<DAL.Data.CustomerOpinionReadListBetweenTwoDate> GetListBetweenTwoDate(string dateStart, string dateEnd)
+        {
+            return new S.CustomerOpinionRepository().GetListBetweenTwoDates(dateStart, dateEnd);
+        }
 
         [HttpGet("{id}")]
         public L.CustomerOpinion Get(int id)

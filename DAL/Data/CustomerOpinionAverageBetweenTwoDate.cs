@@ -6,7 +6,7 @@ namespace DAL.Data
 {
     public class CustomerOpinionAverageBetweenTwoDate
     {
-        public string SmileyString { get; set; }
+        public int SmileyId { get; set; }
         public int NumberOfVote { get; set; }
         public double Percent { get; set; }
     }

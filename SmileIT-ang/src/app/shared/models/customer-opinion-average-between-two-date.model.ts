@@ -1,5 +1,5 @@
 export class CustomerOpinionAverageBetweenTwoDate {
-    SmileyString : string;
+    SmileyId : number;
     NumberOfVote : number;
     Percent : number;
 }

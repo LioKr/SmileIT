@@ -37,7 +37,7 @@ namespace DAL.Mappers
         internal static CustomerOpinionAverageBetweenTwoDate ToCustomerOpinionAverageBewteenTwoDate(this IDataRecord dr)
         {
             return new CustomerOpinionAverageBetweenTwoDate() { 
-                SmileyString = (string)dr[0],
+                SmileyId = (int)dr[0],
                 NumberOfVote = (int)dr[1],
                 Percent = (double)dr[2]
             };

@@ -7,10 +7,10 @@ DECLARE @DateStart Datetime2 = Convert(datetime2,@DateStartString,103),
 		@DateEnd Datetime2 = Convert(datetime2,@DateEndString,103)
 SELECT
 	CO.CustomerReviewDateTime,
-	S.Label,
+	S.id_Smiley,
 	CO.CustomerComment,
 	U.Username
 FROM CustomersOpinions CO
 JOIN Smileys S on CO.FK_Smiley = S.id_Smiley
 JOIN Users U ON CO.FK_User = U.id_User
-WHERE @DateStart >= @DateEnd OR  @DateStart <= @DateEnd
+WHERE CO.CustomerReviewDateTime BETWEEN @DateStart AND @DateEnd 

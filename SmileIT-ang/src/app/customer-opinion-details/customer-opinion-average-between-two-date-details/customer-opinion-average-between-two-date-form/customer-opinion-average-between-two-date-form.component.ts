@@ -25,7 +25,7 @@ export class CustomerOpinionAverageBetweenTwoDateFormComponent implements OnInit
     }
     else {
     this.serviceAvg.formData = {
-      SmileyString: '',
+      SmileyId: 0,
       NumberOfVote: 0,
       Percent: 0
       };

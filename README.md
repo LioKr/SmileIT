@@ -1,8 +1,4 @@
 # SmileIT
- AgorazInternshipProject-SmileIT
+ Agoraz Internship Project : SmileIT
 
-In angular =>
-
-Open Terminal and run =>
-
-'npm install'
+Readme: SmileIT (10-12-2020).docx

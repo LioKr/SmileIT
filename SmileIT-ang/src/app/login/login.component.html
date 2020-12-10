@@ -1,7 +1,7 @@
 <form class="col s12 white" #form="ngForm" (ngSubmit)="onSubmit(form)">
     
       <div class="form-group">
-        <label data-error="Required field!">Username :</label>
+        <label class="text-center" data-error="Required field!">Username :</label>
         <input class="form-control form-control-lg" type="text" name="UserName" #UserName="ngModel" [(ngModel)]="service.loginFormData.Username" required>
         
       </div>
@@ -14,3 +14,4 @@
         <button [disabled]="form.invalid" class="btn btn-info btn-lg btn-block" type="submit">Log in</button>
       </div>   
 </form>
+  

@@ -11,12 +11,13 @@ import { CustomerOpinionService } from '../../shared/services/customer-opinion.s
 })
 export class VoteSmileyComponent implements OnInit {
 
-  constructor(public service: CustomerOpinionService, private router: Router) { }
+  wantToAddComment: boolean = false;
+
+  constructor(public service: CustomerOpinionService, private router: Router, private authService: AuthenticationService) { }
 
   ngOnInit(): void {
     this.resetForm();
   }
-
   
   resetForm (form?: NgForm) {
     if (form != null){
@@ -29,7 +30,21 @@ export class VoteSmileyComponent implements OnInit {
       Commentary: '',
       Created_at: null
       };
+      this.wantToAddComment = false;
     }
+  }
+
+  ToggleWantToAddComment(){
+    this.wantToAddComment = !this.wantToAddComment;
+  }
+
+  
+  logout(){
+    this.authService.logout();
+  }
+
+  isLoggedIn(){
+    return this.authService.isLoggedIn();
   }
 
   onVote1(form: NgForm){

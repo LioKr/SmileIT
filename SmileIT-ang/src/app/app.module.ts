@@ -9,12 +9,21 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from './_helpers/jwt-interceptor.model';
 import {ErrorInterceptor } from './_helpers/error-interceptor.model';
 
-// import { MatToolbarModule, MatIconModule, MatSidenavModule, MatListModule, MatButtonModule } from  '@angular/material';
+// import { MatToolbarModule,
+//    MatIconModule, 
+//    MatSidenavModule, 
+//    MatListModule, 
+//    MatButtonModule } from  '@angular/material';
+
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatCardModule } from '@angular/material/card';
+import { MatInputModule } from '@angular/material/input';
+
+
 import { FourOhFourComponent } from './four-oh-four/four-oh-four.component';
 import { CustomerOpinionDetailsComponent } from './customer-opinion-details/customer-opinion-details.component';
 import { CustomerOpinionDetailFormComponent } from './customer-opinion-details/customer-opinion-detail-form/customer-opinion-detail-form.component';
@@ -24,6 +33,7 @@ import { LoginComponent } from './login/login.component';
 import { UserDetailsComponent } from './users/user-details/user-details.component';
 import { UserDetailFormComponent } from './users/user-details/user-detail-form/user-detail-form.component';
 import { FourOhOneComponent } from './four-oh-one/four-oh-one.component';
+import { NumberToSmileyLogoPipe } from './pipes/number-to-smiley-logo.pipe';
 
 
 
@@ -39,7 +49,8 @@ import { FourOhOneComponent } from './four-oh-one/four-oh-one.component';
     LoginComponent,
     UserDetailsComponent,
     UserDetailFormComponent,
-    FourOhOneComponent
+    FourOhOneComponent,
+    NumberToSmileyLogoPipe
   ],
   imports: [
     BrowserModule,
@@ -51,7 +62,9 @@ import { FourOhOneComponent } from './four-oh-one/four-oh-one.component';
     MatSidenavModule,
     MatListModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    MatCardModule,
+    MatInputModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

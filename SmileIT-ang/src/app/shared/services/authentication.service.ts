@@ -30,7 +30,7 @@ export class AuthenticationService {
     }
     
     isLoggedIn(){
-        if(this.getCurrentTokenValue() != ''){
+        if(localStorage.getItem('jwtToken') != null){
             return true;
         }
         else{

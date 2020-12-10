@@ -8,10 +8,16 @@ import { AuthenticationService } from './shared/services/authentication.service'
 })
 export class AppComponent {
   title = 'SmileIT-ang';
-
   
-  constructor(private authService:AuthenticationService) {
-        
+  constructor(private authService:AuthenticationService) {        
+  }
+
+  isLoggedIn(){
+    return this.authService.isLoggedIn();
+  }
+
+  isLoggedOut(){
+    return this.authService.isLoggedOut();
   }
 
   logout(){

@@ -42,6 +42,13 @@ import { UserDetailsComponent } from './users/user-details/user-details.componen
 import { UserDetailFormComponent } from './users/user-details/user-detail-form/user-detail-form.component';
 import { FourOhOneComponent } from './four-oh-one/four-oh-one.component';
 import { NumberToSmileyLogoPipe } from './pipes/number-to-smiley-logo.pipe';
+import { CustomerOpinionStatsComponent } from './customer-opinion-stats/customer-opinion-stats.component';
+import { AverageBetweenTwoDateComponent } from './customer-opinion-stats/average-between-two-date/average-between-two-date.component';
+import { FormComponent } from './customer-opinion-stats/average-between-two-date/form/form.component';
+import { CustomerOpinionStatsAverageBetweenTwoDateComponent } from './customer-opinion-stats/customer-opinion-stats-average-between-two-date/customer-opinion-stats-average-between-two-date.component';
+import { CustomerOpinionStatsAverageBetweenTwoDateFormComponent } from './customer-opinion-stats/customer-opinion-stats-average-between-two-date/customer-opinion-stats-average-between-two-date-form/customer-opinion-stats-average-between-two-date-form.component';
+import { CustomerOpinionListBetweenTwoDateComponent } from './customer-opinion-list/customer-opinion-list-between-two-date/customer-opinion-list-between-two-date.component';
+import { CustomerOpinionListBetweenTwoDateFormComponent } from './customer-opinion-list/customer-opinion-list-between-two-date/customer-opinion-list-between-two-date-form/customer-opinion-list-between-two-date-form.component';
 
 
 
@@ -65,7 +72,14 @@ import { NumberToSmileyLogoPipe } from './pipes/number-to-smiley-logo.pipe';
     UserDetailsComponent,
     UserDetailFormComponent,
     FourOhOneComponent,
-    NumberToSmileyLogoPipe
+    NumberToSmileyLogoPipe,
+    CustomerOpinionStatsComponent,
+    AverageBetweenTwoDateComponent,
+    FormComponent,
+    CustomerOpinionStatsAverageBetweenTwoDateComponent,
+    CustomerOpinionStatsAverageBetweenTwoDateFormComponent,
+    CustomerOpinionListBetweenTwoDateComponent,
+    CustomerOpinionListBetweenTwoDateFormComponent
   ],
   imports: [
     BrowserModule,

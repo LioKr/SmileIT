@@ -1,5 +1,5 @@
 
--- Avant de commencé;
+-- Avant de commencer;
 
 --use SmileIT.DB
 

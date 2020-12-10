@@ -12,7 +12,7 @@ namespace DAL.Services
     public class UserRepository : IRepository<User, int>
     {
         private const string ConnectionString =
-               @"Data Source=desktop-12fd2ha\sqlexpress;Initial Catalog=SmileITv3.DB;Integrated Security=True"; //lk connection string
+               @"Data Source=desktop-12fd2ha\sqlexpress;Initial Catalog=SmileIT.DB;Integrated Security=True"; //lk connection string
                //@"Data Source=DELL-M4500\SQLEXPRESS;Initial Catalog=SmileIT.DB;Integrated Security=True"; // jy Connection string
         private Connection _dbConnection;
 
